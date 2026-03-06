@@ -276,7 +276,7 @@
     </script>
 
     <audio id="chainsaw-sound" src="chainsaw.mp3" preload="auto"></audio>
-    <audio id="shotgun-sound" src="shotgun_v2.mp3" preload="auto"></audio>
+    <audio id="shotgun-sound" src="shotgun_final.mp3" preload="auto"></audio>
     <div class="scanlines"></div>
 
     <!-- Slide Navigation Footer -->
@@ -387,6 +387,25 @@
                         <tr><td>1% Conversion Rate</td><td>~ 2 New Memberships ($25)</td></tr>
                         <tr><td class="red-text">Automatically Generated</td><td class="red-text"><strong>$600+ / year (Off 1 simple page)</strong></td></tr>
                     </table>
+                </div>
+            </div>
+
+            <!-- Click-to-view photo buttons -->
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:12px;">
+                <div class="hud-box gallery-item" style="padding:12px 8px; cursor:pointer; border-color:#500; text-align:center; transition:all 0.2s;"
+                    onclick="openLightbox('Photos/Hero section.jpeg')"
+                    onmouseover="this.style.borderColor='#ff2a2a'" onmouseout="this.style.borderColor='#500'">
+                    <p class="hud-font red-text" style="font-size:0.8rem; margin:0;">🎯 VIEW HERO SECTION →</p>
+                </div>
+                <div class="hud-box gallery-item" style="padding:12px 8px; cursor:pointer; border-color:#500; text-align:center; transition:all 0.2s;"
+                    onclick="openLightbox('Photos/Veteran section.jpeg')"
+                    onmouseover="this.style.borderColor='#ff2a2a'" onmouseout="this.style.borderColor='#500'">
+                    <p class="hud-font red-text" style="font-size:0.8rem; margin:0;">🎖️ VIEW VETERAN SECTION →</p>
+                </div>
+                <div class="hud-box gallery-item" style="padding:12px 8px; cursor:pointer; border-color:#500; text-align:center; transition:all 0.2s;"
+                    onclick="openLightbox('Photos/Family Section.jpeg')"
+                    onmouseover="this.style.borderColor='#ff2a2a'" onmouseout="this.style.borderColor='#500'">
+                    <p class="hud-font red-text" style="font-size:0.8rem; margin:0;">👨‍👩‍👧 VIEW FAMILY SECTION →</p>
                 </div>
             </div>
 
@@ -661,9 +680,9 @@
 
     <!-- SLIDE 11: FEATURE-TO-ROI MAPPING -->
     <div class="slide" id="slide-11">
-        <div class="content" id="content-11">
+        <div class="content" id="content-11" style="overflow:hidden;">
             <div class="slide-subtitle">Chapter 3: The Hammer of ScrubHub</div>
-            <h1 class="slide-header">New Features</h1>
+            <h1 class="slide-header" style="margin-bottom:8px;">New Features</h1>
             
             <div class="hud-grid-3">
                 <div class="hud-box">
@@ -715,27 +734,48 @@
         </div>
     </div>
 
-    <!-- SLIDE 12: TECHNICAL ARCHITECTURE -->
+    <!-- CHAPTER 4 TITLE: MARKETING OVERVIEW -->
+    <div class="slide" id="slide-ch4" style="position:relative;">
+        <div class="game-overlay" id="overlay-ch4">
+            <div class="instructions">[ ACTIVE RELOAD — PRESS SPACE AT THE RIGHT MOMENT ]</div>
+            <div id="reload-status-ch4" style="font-family: 'Share Tech Mono'; color: #ff2a2a; font-size: 2rem; margin: 20px 0; text-shadow: 0 0 10px #ff0000;">PRESS SPACE TO RELOAD</div>
+            <div id="reload-bar-container-ch4" style="width: 400px; height: 30px; border: 2px solid #500; background: #1a0000; position: relative;">
+                <div id="reload-sweet-spot-ch4" style="position: absolute; height: 100%; top: 0; background: rgba(255,42,42,0.5); width: 60px; left: 250px;"></div>
+                <div id="reload-slider-ch4" style="position: absolute; height: 100%; width: 10px; background: #fff; top: 0; left: 0;"></div>
+            </div>
+        </div>
+        <div class="content" id="content-ch4" style="text-align:center; display:flex; flex-direction:column; justify-content:center; height:100%; align-items:center;">
+            <div class="slide-subtitle" style="font-size:1.5rem; margin-bottom:20px;">CHAPTER 4</div>
+            <h1 class="slide-header" style="border:none; font-size:5rem; margin-bottom:0;">Marketing Overview</h1>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: MARKETING ENGINE -->
     <div class="slide" id="slide-12">
         <div class="content" id="content-12">
             <div class="slide-subtitle">Chapter 4: Marketing Overview</div>
-            <h1 class="slide-header">Technical Architecture (Risk Mitigation)</h1>
-            <div class="hud-box">
-                <h3 style="color: #fff;">The "Hybrid Approach"</h3>
-                <p>We aren't ripping out DRB Website Connect. We are securely layering on top of your existing POS system, ensuring <strong>zero operational downtime</strong>.</p>
-                <div style="font-family: monospace; color: #ff2a2a; text-align: center; font-size: 1.5rem; margin-top: 30px;">
-                    [ CUSTOM IOS/ANDROID APP ]<br>
-                    |<br>
-                    v<br>
-                    [ DRB CERTIFIED API LAYER ]<br>
-                    |<br>
-                    v<br>
-                    [ EXISTING DRB POS ]
+            <h1 class="slide-header">Our Marketing Engine</h1>
+            <p style="font-size:0.9rem; margin-bottom:10px;">A full-stack growth system that runs in the background — attracting, converting, and retaining customers automatically.</p>
+            <div class="hud-grid">
+                <div class="hud-box">
+                    <h3 class="red-text">Acquisition Automations</h3>
+                    <p style="font-size:0.9rem;">A website pop-up captures new visitor emails, triggering a <strong>Welcome Series</strong> — automated emails that introduce ScrubHub and push toward the first membership sign-up.</p>
+                </div>
+                <div class="hud-box">
+                    <h3 class="red-text">Abandoned Checkout Recovery</h3>
+                    <p style="font-size:0.9rem;">If someone starts the membership flow and doesn't complete it, an <strong>abandoned cart sequence</strong> fires automatically to recover that revenue before it's gone.</p>
+                </div>
+                <div class="hud-box">
+                    <h3 class="red-text">App Push Notifications</h3>
+                    <p style="font-size:0.9rem;">App users who open and click but don't purchase receive a <strong>targeted push notification</strong> within 24 hours with a personalized offer to close the loop.</p>
+                </div>
+                <div class="hud-box">
+                    <h3 class="red-text">Unlimited Campaign Execution</h3>
+                    <p style="font-size:0.9rem;">We handle unlimited email design and automations. You bring the campaign idea — we design, you approve, we send. Lightning deals, seasonal pushes, weather-triggered alerts — all handled.</p>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- SLIDE 13: THE OPERATIONS DASHBOARD -->
     <div class="slide" id="slide-13">
         <div class="content" id="content-13">
@@ -840,15 +880,6 @@
     </div>
 
 
-    <!-- FINAL CHAPTER: BOSS FIGHT -->
-    <div class="slide" id="slide-final-ch" style="position:relative;">
-        <div class="content" id="content-final-ch" style="text-align:center; display:flex; flex-direction:column; justify-content:center; height:100%; align-items:center;">
-            <div class="slide-subtitle" style="font-size:1.5rem; margin-bottom:20px; color:#ff2a2a;">FINAL CHAPTER</div>
-            <h1 class="slide-header" style="border:none; font-size:7rem; margin-bottom:20px;">Boss Fight</h1>
-            <p class="hud-font" style="color:#666; font-size:1rem; animation:pulse 1.5s infinite;">[ PRESS NEXT TO ENGAGE ]</p>
-        </div>
-    </div>
-
     <!-- SLIDE 17: NEXT STEPS -->
     <div class="slide" id="slide-17">
         <div class="content" id="content-17" style="text-align: center; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%;">
@@ -867,7 +898,7 @@
 
     <!-- Chainsaw Audio -->
     <audio id="chainsaw-sound" src="chainsaw.mp3" preload="auto"></audio>
-    <audio id="shotgun-sound" src="shotgun_v2.mp3" preload="auto"></audio>
+    <audio id="shotgun-sound" src="shotgun_final.mp3" preload="auto"></audio>
 
     <!-- Journal Modal -->
     <div id="journal-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.9); z-index: 1000; align-items:center; justify-content:center;" onclick="if(event.target.id === 'journal-modal') closeJournal()">
@@ -927,18 +958,18 @@
             const nextSlideElement = document.getElementById('slide-' + num);
             // Shotgun slide init
             if(num === 9) { setTimeout(initShotgunSlide, 100); }
-            // Hammer of Dawn boss battle (slide-16 is the arena)
-            if(nextSlideElement && nextSlideElement.id === 'slide-16') { setTimeout(initHammerOfDawn, 200); }
+            // Hammer of Dawn boss battle
+            if(nextSlideElement && (nextSlideElement.id === 'slide-16' || nextSlideElement.id === 'slide-final-ch')) { setTimeout(initHammerOfDawn, 200); }
             
             if(num === 2) {
                 // Slide 2 is Agenda
                 revealContent(num);
-            } else if (nextSlideElement && (nextSlideElement.id === 'slide-3' || nextSlideElement.id === 'slide-ch3' || nextSlideElement.id === 'slide-ch4' || nextSlideElement.id === 'slide-ch5')) {
+            } else if (nextSlideElement && (nextSlideElement.id === 'slide-3' || nextSlideElement.id === 'slide-ch3' || nextSlideElement.id === 'slide-ch4' || nextSlideElement.id === 'slide-ch5' || nextSlideElement.id === 'slide-ch4')) {
                 let sfxMap = {
-                    'slide-3':   { overlayId: 'overlay-3', statusId: 'reload-status-3', sweetSpotId: 'reload-sweet-spot-3', sliderId: 'reload-slider-3', wrapperId: 'content-3', speed: 10 },
-                    'slide-ch3': { overlayId: 'overlay-ch3', statusId: 'reload-status-ch3', sweetSpotId: 'reload-sweet-spot-ch3', sliderId: 'reload-slider-ch3', wrapperId: 'content-ch3', speed: 10 },
-                    'slide-ch4': { overlayId: 'overlay-ch4', statusId: 'reload-status-ch4', sweetSpotId: 'reload-sweet-spot-ch4', sliderId: 'reload-slider-ch4', wrapperId: 'content-ch4', speed: 11 },
-                    'slide-ch5': { overlayId: 'overlay-ch5', statusId: 'reload-status-ch5', sweetSpotId: 'reload-sweet-spot-ch5', sliderId: 'reload-slider-ch5', wrapperId: 'content-ch5', speed: 12 },
+                    'slide-3':   { overlayId: 'overlay-3',    statusId: 'reload-status-3',    sweetSpotId: 'reload-sweet-spot-3',    sliderId: 'reload-slider-3',    wrapperId: 'content-3',    speed: 10 },
+                    'slide-ch3': { overlayId: 'overlay-ch3',  statusId: 'reload-status-ch3',  sweetSpotId: 'reload-sweet-spot-ch3',  sliderId: 'reload-slider-ch3',  wrapperId: 'content-ch3',  speed: 10 },
+                    'slide-ch4': { overlayId: 'overlay-ch4',  statusId: 'reload-status-ch4',  sweetSpotId: 'reload-sweet-spot-ch4',  sliderId: 'reload-slider-ch4',  wrapperId: 'content-ch4',  speed: 11 },
+                    'slide-ch5': { overlayId: 'overlay-ch5',  statusId: 'reload-status-ch5',  sweetSpotId: 'reload-sweet-spot-ch5',  sliderId: 'reload-slider-ch5',  wrapperId: 'content-ch5',  speed: 12 },
                 };
                 let cfg = sfxMap[nextSlideElement.id];
                 startActiveReload({
@@ -1313,33 +1344,38 @@
                 setTimeout(() => chip.remove(), 1000);
             }
 
-            // TEXT-side particles: chips fly off the title text
+            // TEXT-SHATTER: Bold letter-sized chunks break off the title
             let titleRect = title.getBoundingClientRect();
             let slideRect = slide.getBoundingClientRect();
-            let textChips = 12 + Math.floor(Math.random() * 8);
+            // Spawn fragments that look like letter blocks
+            let textChips = 18 + Math.floor(Math.random() * 10);
             for(let i = 0; i < textChips; i++) {
                 let chip = document.createElement('div');
                 chip.className = 'chip-particle';
-                // Random position along the title text bbox
+                // Random position tightly overlapping the title rect
                 let tx = (titleRect.left - slideRect.left) + Math.random() * titleRect.width;
-                let ty = (titleRect.top  - slideRect.top)  + Math.random() * titleRect.height;
-                let size = 5 + Math.random() * 12;
-                chip.style.width  = size + 'px';
-                chip.style.height = (size * (0.4 + Math.random()*0.6)) + 'px';
-                chip.style.borderRadius = '1px';
-                chip.style.left = tx + 'px';
-                chip.style.top  = ty + 'px';
-                // Colours sampled from title (white, dim white, gray)
-                let colors = ['#fff','#ddd','#aaa','#ff2a2a','#ff6600'];
+                let ty = (titleRect.top  - slideRect.top)  + Math.random() * titleRect.height * 0.8;
+                // Letter-block sized chunks (tall rectangles like letters breaking)
+                let w = 12 + Math.random() * 30;
+                let h = 30 + Math.random() * 40;
+                chip.style.width  = w + 'px';
+                chip.style.height = h + 'px';
+                chip.style.borderRadius = '2px';
+                chip.style.left = (tx - w/2) + 'px';
+                chip.style.top  = (ty - h/2) + 'px';
+                // Bright white chunks with red accent
+                let colors = ['#ffffff','#ffffff','#eeeeee','#ff2a2a','#ffaa00'];
                 chip.style.background = colors[Math.floor(Math.random()*colors.length)];
-                let angle = -90 + (Math.random()-0.5)*180; // mostly upward/outward
-                let dist  = 40 + Math.random() * 120;
+                chip.style.opacity = '0.9';
+                // Explode outward in all directions but mostly away from center
+                let angle = Math.random() * 360;
+                let dist  = 80 + Math.random() * 200;
                 chip.style.setProperty('--dx', (Math.cos(angle*Math.PI/180)*dist)+'px');
-                chip.style.setProperty('--dy', (-Math.abs(Math.sin(angle*Math.PI/180)*dist)-20)+'px');
-                chip.style.setProperty('--rot', (Math.random()*900-450)+'deg');
-                chip.style.animationDuration = (0.5+Math.random()*0.6)+'s';
+                chip.style.setProperty('--dy', (Math.sin(angle*Math.PI/180)*dist - 60)+'px');
+                chip.style.setProperty('--rot', (Math.random()*1080-540)+'deg');
+                chip.style.animationDuration = (0.6+Math.random()*0.7)+'s';
                 fxBox.appendChild(chip);
-                setTimeout(() => chip.remove(), 1200);
+                setTimeout(() => chip.remove(), 1400);
             }
 
             // Chip away at the title (each shot removes 8-15%)
@@ -1382,14 +1418,23 @@
             hodActive = true;
             hodKills = 0;
             let arena = document.getElementById('hod-arena');
-            let content16 = document.getElementById('content-16');
+            let titleScreen = document.getElementById('hod-title-screen');
             let healthBar = document.getElementById('hod-health-fill');
             let statusEl = document.getElementById('hod-status');
 
-            arena.style.display = 'block';
-            content16.style.display = 'none';
+            // Show title for 2 seconds then fade to battle
+            arena.style.opacity = '0';
+            if(titleScreen) titleScreen.style.opacity = '1';
             healthBar.style.width = '100%';
-            statusEl.innerHTML = 'HAMMER OF DAWN ACTIVATED — TAKE OUT THE COMPETITION';
+            statusEl.innerHTML = 'ELIMINATE THE COMPETITION';
+
+            setTimeout(() => {
+                if(titleScreen) { titleScreen.style.opacity = '0'; }
+                setTimeout(() => {
+                    if(titleScreen) titleScreen.style.display = 'none';
+                    arena.style.opacity = '1';
+                }, 800);
+            }, 2000);
 
             // Clear old enemies
             arena.querySelectorAll('.hod-enemy').forEach(e => e.remove());
