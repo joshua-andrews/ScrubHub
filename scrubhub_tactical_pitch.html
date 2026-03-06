@@ -744,7 +744,7 @@
     <!-- SLIDE 22: HAMMER OF DAWN vs MISTER WASH -->
     <div class="slide" id="slide-22">
         <div class="game-overlay" id="overlay-22" style="background: rgba(5,0,0,0.7); backdrop-filter: none; cursor: crosshair;" onclick="clickAnywhere(event)">
-            <div class="instructions" id="hod-instructions" style="position: absolute; top: 40px; font-size: 1.5rem; pointer-events: none;">[ COMPETITOR DETECTED - CLICK TARGET TO CALL HAMMER OF DAWN ]</div>
+            <div class="instructions" id="hod-instructions" style="position: absolute; top: 40px; font-size: 1.5rem; pointer-events: none;">[ COMPETITOR DETECTED - CLICK ANYWHERE TO CALL HAMMER OF SCRUBHUB ]</div>
             <div id="boss-arena">
                 <div class="boss-wrapper" id="boss-target">
                     <div class="boss-health-container">
@@ -784,7 +784,7 @@
     <audio id="victory-theme" src="victory_theme.mp3" preload="auto"></audio>
 
     <!-- Global Logo -->
-    <img src="white t logo.png" style="position: fixed; bottom: 30px; right: 40px; width: 60px; height: auto; z-index: 1000; opacity: 0.5; pointer-events: none;">
+    <img src="white t logo.png" style="position: fixed; top: 20px; right: 40px; width: 55px; height: auto; z-index: 1000; opacity: 0.5; pointer-events: none;">
 
     <!-- Journal Modal -->
     <div id="journal-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.9); z-index: 1000; align-items:center; justify-content:center;" onclick="if(event.target.id === 'journal-modal') closeJournal()">
@@ -802,13 +802,14 @@
         let slideUnlocked = false; // Prevents nav before chainsaw
 
         let musicStarted = false;
-        document.addEventListener('click', () => {
-            if (!musicStarted && currentSlideIndex === 1) {
+        function tryStartMainTheme() {
+            if (!musicStarted) {
                 let mt = document.getElementById('main-theme');
                 if(mt) { mt.volume = 0.4; mt.play().catch(()=>{}); }
                 musicStarted = true;
             }
-        });
+        }
+        document.addEventListener('click', tryStartMainTheme);
 
         function updateNav() {
             const btnPrev = document.getElementById('btn-prev');
@@ -984,6 +985,7 @@
                     s1.classList.remove('shaking');
                     s1.classList.remove('active-slide');
                     slideUnlocked = true;
+                    tryStartMainTheme();
                     
                     // Fade audio out smoothly into slide 2, then pause
                     let fadeInterval = setInterval(() => {
@@ -1291,11 +1293,14 @@
 
             // Chip away at the title letters directly
             let letters = Array.from(title.querySelectorAll('.shatter-letter:not(.destroyed)'));
-            if (letters.length > 0) {
-                let toDestroy = Math.min(letters.length, Math.floor(2 + Math.random()*2));
+            let subtitle = document.getElementById('swot-subtitle');
+            let subLetters = subtitle ? Array.from(subtitle.querySelectorAll('.shatter-letter:not(.destroyed)')) : [];
+            let allLetters = letters.concat(subLetters);
+            if (allLetters.length > 0) {
+                let toDestroy = Math.min(allLetters.length, Math.floor(2 + Math.random()*3));
                 for(let i=0; i<toDestroy; i++) {
-                    let idx = Math.floor(Math.random() * letters.length);
-                    let l = letters.splice(idx, 1)[0];
+                    let idx = Math.floor(Math.random() * allLetters.length);
+                    let l = allLetters.splice(idx, 1)[0];
                     if(l) {
                         l.classList.add('destroyed');
                         l.style.transform = `translate(${Math.random()*150 - 75}px, ${Math.random()*200 + 100}px) rotate(${Math.random()*180 - 90}deg)`;
@@ -1313,6 +1318,8 @@
                 shotgunDone = true;
                 if(shotgunHint) shotgunHint.style.display = 'none';
                 title.style.opacity = '0';
+                let sub = document.getElementById('swot-subtitle');
+                if(sub) sub.style.opacity = '0';
                 // Wait for last particle wave to finish, then flash + advance
                 setTimeout(() => {
                     slide.style.background = '';
