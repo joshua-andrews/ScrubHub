@@ -31,8 +31,8 @@
         .content {
             opacity: 0; transform: scale(0.95); transition: all 0.5s ease;
             text-align: left; width: 100%; max-width: 1200px; z-index: 20;
-            max-height: 90vh; overflow-y: auto;
-            padding-right: 20px; padding-bottom: 20px;
+            max-height: 85vh; overflow: hidden;
+            padding-right: 10px; padding-bottom: 10px;
         }
         
         /* Custom Scrollbar for content */
@@ -118,26 +118,170 @@
         .blood-splatter { position: absolute; width: 150px; height: 150px; background-image: radial-gradient(circle, rgba(120,0,0,0.9) 10%, rgba(200,0,0,0.5) 30%, transparent 70%); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: translate(-50%, -50%); z-index: 40; pointer-events: none; filter: blur(3px); mix-blend-mode: multiply; }
         .flash { position: absolute; width: 100px; height: 100px; background: radial-gradient(circle, #fff 10%, #ffaa00 40%, transparent 70%); border-radius: 50%; transform: translate(-50%, -50%); z-index: 42; pointer-events: none; animation: muzzleFlash 0.15s forwards; }
         @keyframes muzzleFlash { 0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); } }
+        @keyframes flashOut { 0% { opacity: 1; } 100% { opacity: 0; } }
 
         /* Journal content scrollbar */
         #journal-content::-webkit-scrollbar { width: 6px; }
         #journal-content::-webkit-scrollbar-track { background: transparent; }
         #journal-content::-webkit-scrollbar-thumb { background: #500; border-radius: 3px; }
-        #journal-content * { color: #1a1a1a !important; text-shadow: none !important; font-family: 'Share Tech Mono', monospace !important; }
-        #journal-content h3 { font-family: 'Anton', sans-serif !important; font-size: 2rem; color: #500 !important; margin-bottom: 20px; }
+        #journal-content * { color: #ccc !important; text-shadow: none !important; font-family: 'Share Tech Mono', monospace !important; }
+        #journal-content h3 { font-family: 'Anton', sans-serif !important; font-size: 2rem; color: #ff2a2a !important; margin-bottom: 20px; text-shadow: 0 0 10px rgba(255,42,42,0.5) !important; }
         
         .swot-quadrant:hover { background: rgba(50, 0, 0, 0.6); border-color: #ff2a2a !important; transform: scale(1.02); }
+
+
+        /* PARTICLE CHIP SYSTEM */
+        .chip-particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 60;
+            border-radius: 2px;
+            animation: chipFly 0.8s ease-out forwards;
+        }
+        @keyframes chipFly {
+            0% { opacity: 1; transform: translate(0,0) rotate(0deg); }
+            100% { opacity: 0; transform: translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(0.1); }
+        }
+        .shotgun-hint {
+            position: absolute;
+            bottom: 80px;
+            width: 100%;
+            text-align: center;
+            font-family: 'Share Tech Mono';
+            font-size: 1rem;
+            color: rgba(255,42,42,0.7);
+            pointer-events: none;
+            z-index: 55;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+
+        /* CROSSHAIR CURSOR */
+        #slide-9 { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' stroke='%23ff2a2a' stroke-width='1.5' fill='none'/%3E%3Cline x1='20' y1='2' x2='20' y2='12' stroke='%23ff2a2a' stroke-width='1.5'/%3E%3Cline x1='20' y1='28' x2='20' y2='38' stroke='%23ff2a2a' stroke-width='1.5'/%3E%3Cline x1='2' y1='20' x2='12' y2='20' stroke='%23ff2a2a' stroke-width='1.5'/%3E%3Cline x1='28' y1='20' x2='38' y2='20' stroke='%23ff2a2a' stroke-width='1.5'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23ff2a2a'/%3E%3C/svg%3E") 20 20, crosshair; }
+
+        /* HAMMER OF DAWN */
+        .hod-enemy {
+            position: absolute;
+            font-family: 'Share Tech Mono';
+            font-size: 0.85rem;
+            color: #ff2a2a;
+            text-align: center;
+            cursor: crosshair;
+            user-select: none;
+            padding: 8px 12px;
+            border: 1px solid #500;
+            background: rgba(20,0,0,0.8);
+            transition: none;
+            z-index: 20;
+            text-shadow: 0 0 8px rgba(255,0,0,0.5);
+            white-space: nowrap;
+        }
+        .hod-enemy.hit {
+            animation: enemyHit 0.3s ease-out forwards;
+        }
+        .hod-enemy.dead {
+            display: none;
+        }
+        @keyframes enemyHit {
+            0% { transform: scale(1); filter: brightness(3); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); filter: brightness(1); }
+        }
+        .hod-beam {
+            position: fixed;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent, #ff6600, #ff2a2a, #fff);
+            transform-origin: top center;
+            pointer-events: none;
+            z-index: 999;
+            box-shadow: 0 0 20px #ff4400, 0 0 40px #ff2a2a;
+            animation: beamFire 0.4s ease-out forwards;
+        }
+        @keyframes beamFire {
+            0% { opacity: 1; width: 6px; }
+            100% { opacity: 0; width: 2px; }
+        }
+        .hod-explosion {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 998;
+            background: radial-gradient(circle, #fff 0%, #ff6600 30%, #ff2a2a 60%, transparent 100%);
+            animation: explode 0.5s ease-out forwards;
+        }
+        @keyframes explode {
+            0% { transform: translate(-50%,-50%) scale(0); opacity: 1; }
+            100% { transform: translate(-50%,-50%) scale(3); opacity: 0; }
+        }
+        #hod-health-bar {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 20px;
+            border: 2px solid #ff2a2a;
+            background: #1a0000;
+            z-index: 30;
+        }
+        #hod-health-fill {
+            height: 100%;
+            background: linear-gradient(to right, #ff2a2a, #ff6600);
+            width: 100%;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 15px #ff2a2a;
+        }
+        #hod-status {
+            position: absolute;
+            bottom: 58px;
+            width: 100%;
+            text-align: center;
+            font-family: 'Anton';
+            font-size: 1.3rem;
+            color: #ff2a2a;
+            letter-spacing: 2px;
+            z-index: 30;
+            text-shadow: 0 0 10px rgba(255,0,0,0.8);
+        }
+        #hod-ammo {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-family: 'Share Tech Mono';
+            font-size: 1rem;
+            color: #ff6600;
+            z-index: 30;
+        }
+        #hod-targeting-reticle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 997;
+            border: 2px solid #ff6600;
+            border-radius: 50%;
+            width: 60px; height: 60px;
+            box-shadow: 0 0 20px #ff4400;
+            display: none;
+            animation: reticleAnim 0.1s ease-in-out;
+        }
+        @keyframes reticleAnim {
+            0%  { transform: translate(-50%,-50%) scale(2); opacity:0; }
+            100%{ transform: translate(-50%,-50%) scale(1); opacity:1; }
+        }
 
     </style>
 </head>
 <body>
+    <script>
+        function logDebug(msg) { /* debug logging suppressed */ }
+    </script>
+
     <audio id="chainsaw-sound" src="chainsaw.mp3" preload="auto"></audio>
+    <audio id="shotgun-sound" src="shotgun_v2.mp3" preload="auto"></audio>
     <div class="scanlines"></div>
 
     <!-- Slide Navigation Footer -->
     <div class="slide-nav">
         <button class="nav-button" id="btn-prev" onclick="prevSlide()" disabled><< Previous</button>
-        
         <button class="nav-button" id="btn-next" onclick="nextSlide(currentSlideIndex + 1)" style="display: none;">Next >></button>
     </div>
 
@@ -166,9 +310,9 @@
             <div class="hud-box" style="margin-top: 20px; border-color: #ff2a2a;">
                 <p style="font-size: 1.5rem; border-bottom: 1px solid #330000; padding-bottom: 15px;"><strong>1. The Landscape & Problem</strong><span class="hud-font red-text" style="float: right;">[ CHAPTER 01 ]</span></p>
                 <p style="font-size: 1.5rem; border-bottom: 1px solid #330000; padding-bottom: 15px;"><strong>2. Strategic SWOT Analysis</strong><span class="hud-font red-text" style="float: right;">[ CHAPTER 02 ]</span></p>
-                <p style="font-size: 1.5rem; border-bottom: 1px solid #330000; padding-bottom: 15px;"><strong>3. The Digital Overhaul Solution</strong><span class="hud-font red-text" style="float: right;">[ CHAPTER 03 ]</span></p>
-                <p style="font-size: 1.5rem; border-bottom: 1px solid #330000; padding-bottom: 15px;"><strong>4. Operations & Risk Mitigation</strong><span class="hud-font red-text" style="float: right;">[ CHAPTER 04 ]</span></p>
-                <p style="font-size: 1.5rem; margin-bottom: 0;"><strong>5. Execution Timeline & Economics</strong><span class="hud-font red-text" style="float: right;">[ CHAPTER 05 ]</span></p>
+                <p style="font-size: 1.5rem; border-bottom: 1px solid #330000; padding-bottom: 15px;"><strong>3. The Hammer of ScrubHub</strong><span class="hud-font red-text" style="float: right;">[ CHAPTER 03 ]</span></p>
+                <p style="font-size: 1.5rem; border-bottom: 1px solid #330000; padding-bottom: 15px;"><strong>4. Marketing Overview</strong><span class="hud-font red-text" style="float: right;">[ CHAPTER 04 ]</span></p>
+                <p style="font-size: 1.5rem; margin-bottom: 0;"><strong>5. Execution Details</strong><span class="hud-font red-text" style="float: right;">[ CHAPTER 05 ]</span></p>
             </div>
         </div>
     </div>
@@ -177,8 +321,8 @@
     <!-- SLIDE 2.5: CHAPTER 1 TITLE (ACTIVE RELOAD) -->
     <div class="slide" id="slide-3" style="position:relative;">
         <div class="game-overlay" id="overlay-3">
-            <div class="instructions">[ DECRYPTING INTEL - PRESS SPACE TO ACTIVE RELOAD ]</div>
-            <div id="reload-status-3" style="font-family: 'Share Tech Mono'; color: #ff2a2a; font-size: 2rem; margin: 20px 0; text-shadow: 0 0 10px #ff0000;">WAITING...</div>
+            <div class="instructions">[ ACTIVE RELOAD — PRESS SPACE AT THE RIGHT MOMENT ]</div>
+            <div id="reload-status-3" style="font-family: 'Share Tech Mono'; color: #ff2a2a; font-size: 2rem; margin: 20px 0; text-shadow: 0 0 10px #ff0000;">PRESS SPACE TO RELOAD</div>
             <div id="reload-bar-container-3" style="width: 400px; height: 30px; border: 2px solid #500; background: #1a0000; position: relative;">
                 <div id="reload-sweet-spot-3" style="position: absolute; height: 100%; top: 0; background: rgba(255,42,42,0.5); width: 60px; left: 250px;"></div>
                 <div id="reload-slider-3" style="position: absolute; height: 100%; width: 10px; background: #fff; top: 0; left: 0;"></div>
@@ -217,26 +361,26 @@
         <div class="content" id="content-4">
             <div class="slide-subtitle">Chapter 1: The Landscape & Problem</div>
             <h1 class="slide-header">Website Audit</h1>
-            <p>Every digital touchpoint affects your marketing channels. A cohesive experience is mandatory. Currently, the website is not optimized for conversion rate or UX/UI.</p>
+            <p style="font-size:0.9rem; margin-bottom:10px;">Every digital touchpoint affects your marketing channels. Currently, the website has 4 critical conversion issues.</p>
             
             <div class="hud-grid">
                 <div class="hud-box">
                     <h3 class="red-text">1. Sub-Optimal Hero Section</h3>
-                    <p style="font-size: 1rem;">The banner "Join Unlimited Scrub Club" functions as a header, not a button, adding friction. Upfront veteran/family discounts clutter the hero unless data proves they actively convert new users.</p>
+                    <p style="font-size:0.85rem; margin-bottom:0;">The banner functions as a header, not a button, adding friction. Discounts clutter the hero section unnecessarily.</p>
                 </div>
                 <div class="hud-box">
                     <h3 class="red-text">2. Misaligned Content Hierarchy</h3>
-                    <p style="font-size: 1rem;">The "About Us" section disrupts the funnel. Customers only care about what ScrubHub does for <em>them</em>. The wash menu and membership pricing must be pushing to the top.</p>
+                    <p style="font-size:0.85rem; margin-bottom:0;">The "About Us" section disrupts the funnel. Wash menu and membership pricing must lead.</p>
                 </div>
                 <div class="hud-box">
                     <h3 class="red-text">3. Outdated Brand Perception</h3>
-                    <p style="font-size: 1rem;">Testimonials are buried instead of sprinkled throughout for social proof. The footer reads "Copyright 2024" (two years behind). These details ruin reputation and signal an outdated company.</p>
+                    <p style="font-size:0.85rem; margin-bottom:0;">Testimonials are buried. Footer reads "Copyright 2024" — two years behind. Signals an outdated brand.</p>
                 </div>
                 <div class="hud-box" style="border-color: #ff2a2a;">
                     <h3 class="red-text">4. Zero Email Capture Engine</h3>
-                    <p style="font-size: 1rem;">Using scroll-depth popups, we can exchange custom offers for emails and build an automated remarketing list. This is not including them opting into a referral program or considering any website UI updates.</p>
+                    <p style="font-size:0.85rem; margin-bottom:5px;">Scroll-depth popups can build an automated remarketing list on autopilot.</p>
                     
-                    <table style="margin-top: 10px; font-size: 0.9rem;">
+                    <table style="margin-top: 5px; font-size: 0.78rem;">
                         <tr><th>Metric</th><th>Estimated Yield</th></tr>
                         <tr><td>Monthly Traffic (Example)</td><td>3,000 Visitors</td></tr>
                         <tr><td>5% Email Capture Rate</td><td>150 Leads / month</td></tr>
@@ -245,24 +389,35 @@
                     </table>
                 </div>
             </div>
+
         </div>
     </div>
 
-    
-            <div class="hud-grid" style="margin-top: 20px;">
-                <div class="hud-box gallery-item" style="padding: 10px; cursor: pointer; border-color: #500; transition: transform 0.2s;" onclick="openLightbox('Photos/Hero section.jpeg')">
-                    <img src="Photos/Hero section.jpeg" alt="Hero Section" style="width: 100%; height: auto; border-bottom: 1px solid #ff2a2a; padding-bottom: 5px;">
-                    <p class="hud-font red-text" style="font-size: 0.8rem; text-align: center; margin-top: 10px; margin-bottom: 0;">[ VIEW HERO SECTION AUDIT ]</p>
+    <!-- SLIDE 4B: WEBSITE AUDIT EVIDENCE -->
+    <div class="slide" id="slide-4b">
+        <div class="content" id="content-4b">
+            <div class="slide-subtitle">Chapter 1: The Landscape &amp; Problem</div>
+            <h1 class="slide-header">Audit Evidence</h1>
+            <p style="font-size:0.9rem; margin-bottom:15px;">Click any section below to expand and view the full findings.</p>
+            <div class="hud-grid-3" style="margin-top:10px;">
+                <div class="hud-box gallery-item" style="padding: 30px 20px; cursor: pointer; border-color: #500; transition: all 0.2s; text-align:center;" onclick="openLightbox('Photos/Hero section.jpeg')">
+                    <p style="font-size:2rem; margin:0 0 10px 0;">🎯</p>
+                    <h3 class="red-text" style="margin-bottom:8px;">Hero Section</h3>
+                    <p class="hud-font" style="font-size: 0.8rem; margin: 0; color:#666;">[ CLICK TO EXPAND → ]</p>
                 </div>
-                <div class="hud-box gallery-item" style="padding: 10px; cursor: pointer; border-color: #500; transition: transform 0.2s;" onclick="openLightbox('Photos/Veteran section.jpeg')">
-                    <img src="Photos/Veteran section.jpeg" alt="Veteran Section" style="width: 100%; height: auto; border-bottom: 1px solid #ff2a2a; padding-bottom: 5px;">
-                    <p class="hud-font red-text" style="font-size: 0.8rem; text-align: center; margin-top: 10px; margin-bottom: 0;">[ VIEW VETERAN SECTION AUDIT ]</p>
+                <div class="hud-box gallery-item" style="padding: 30px 20px; cursor: pointer; border-color: #500; transition: all 0.2s; text-align:center;" onclick="openLightbox('Photos/Veteran section.jpeg')">
+                    <p style="font-size:2rem; margin:0 0 10px 0;">🎖️</p>
+                    <h3 class="red-text" style="margin-bottom:8px;">Veteran Section</h3>
+                    <p class="hud-font" style="font-size: 0.8rem; margin: 0; color:#666;">[ CLICK TO EXPAND → ]</p>
                 </div>
-                <div class="hud-box gallery-item" style="padding: 10px; cursor: pointer; border-color: #500; transition: transform 0.2s;" onclick="openLightbox('Photos/Family Section.jpeg')">
-                    <img src="Photos/Family Section.jpeg" alt="Family Section" style="width: 100%; height: auto; border-bottom: 1px solid #ff2a2a; padding-bottom: 5px;">
-                    <p class="hud-font red-text" style="font-size: 0.8rem; text-align: center; margin-top: 10px; margin-bottom: 0;">[ VIEW FAMILY SECTION AUDIT ]</p>
+                <div class="hud-box gallery-item" style="padding: 30px 20px; cursor: pointer; border-color: #500; transition: all 0.2s; text-align:center;" onclick="openLightbox('Photos/Family Section.jpeg')">
+                    <p style="font-size:2rem; margin:0 0 10px 0;">👨‍👩‍👧</p>
+                    <h3 class="red-text" style="margin-bottom:8px;">Family Section</h3>
+                    <p class="hud-font" style="font-size: 0.8rem; margin: 0; color:#666;">[ CLICK TO EXPAND → ]</p>
                 </div>
             </div>
+        </div>
+    </div>
 
     <!-- SLIDE 5: LAYING OUT THE FACTS -->
     <div class="slide" id="slide-5">
@@ -385,27 +540,44 @@
             <div class="hud-grid" style="grid-template-columns: 1fr 1fr; gap: 30px;">
                 <div class="hud-box swot-quadrant" style="cursor: pointer; text-align: center; padding: 40px;" onclick="openJournal('strength')">
                     <h1 style="color: #fff; margin-bottom: 10px;">STRENGTHS</h1>
-                    <p class="hud-font red-text" style="margin: 0;">[ CLICK TO DECRYPT ARCHIVE ]</p>
+                    <p class="hud-font red-text" style="margin: 0;">[ CLICK TO READ JOURNAL ]</p>
                 </div>
                 <div class="hud-box swot-quadrant" style="cursor: pointer; border-color: #ff2a2a; text-align: center; padding: 40px;" onclick="openJournal('weakness')">
                     <h1 class="red-text" style="margin-bottom: 10px;">WEAKNESSES</h1>
-                    <p class="hud-font red-text" style="margin: 0;">[ CLICK TO DECRYPT ARCHIVE ]</p>
+                    <p class="hud-font red-text" style="margin: 0;">[ CLICK TO READ JOURNAL ]</p>
                 </div>
                 <div class="hud-box swot-quadrant" style="cursor: pointer; text-align: center; padding: 40px;" onclick="openJournal('opportunity')">
                     <h1 style="color: #fff; margin-bottom: 10px;">OPPORTUNITIES</h1>
-                    <p class="hud-font red-text" style="margin: 0;">[ CLICK TO DECRYPT ARCHIVE ]</p>
+                    <p class="hud-font red-text" style="margin: 0;">[ CLICK TO READ JOURNAL ]</p>
                 </div>
                 <div class="hud-box swot-quadrant" style="cursor: pointer; border-color: #ff2a2a; text-align: center; padding: 40px;" onclick="openJournal('threat')">
                     <h1 class="red-text" style="margin-bottom: 10px;">THREATS</h1>
-                    <p class="hud-font red-text" style="margin: 0;">[ CLICK TO DECRYPT ARCHIVE ]</p>
+                    <p class="hud-font red-text" style="margin: 0;">[ CLICK TO READ JOURNAL ]</p>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- CHAPTER 3 TITLE: THE HAMMER OF SCRUBHUB -->
+    <div class="slide" id="slide-ch3" style="position:relative;">
+        <div class="game-overlay" id="overlay-ch3">
+            <div class="instructions">[ ACTIVE RELOAD — PRESS SPACE AT THE RIGHT MOMENT ]</div>
+            <div id="reload-status-ch3" style="font-family: 'Share Tech Mono'; color: #ff2a2a; font-size: 2rem; margin: 20px 0; text-shadow: 0 0 10px #ff0000;">PRESS SPACE TO RELOAD</div>
+            <div id="reload-bar-container-ch3" style="width: 400px; height: 30px; border: 2px solid #500; background: #1a0000; position: relative;">
+                <div id="reload-sweet-spot-ch3" style="position: absolute; height: 100%; top: 0; background: rgba(255,42,42,0.5); width: 60px; left: 250px;"></div>
+                <div id="reload-slider-ch3" style="position: absolute; height: 100%; width: 10px; background: #fff; top: 0; left: 0;"></div>
+            </div>
+        </div>
+        <div class="content" id="content-ch3" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; align-items: center;">
+            <div class="slide-subtitle" style="font-size: 1.5rem; margin-bottom: 20px;">CHAPTER 3</div>
+            <h1 class="slide-header" style="border: none; font-size: 5rem; margin-bottom: 0;">The Hammer of ScrubHub</h1>
+        </div>
+    </div>
+
     <!-- SLIDE 10: THE DIGITAL OVERHAUL STRATEGY -->
     <div class="slide" id="slide-10">
         <div class="content" id="content-10">
-            <div class="slide-subtitle">Chapter 3: The Proposed Solution</div>
+            <div class="slide-subtitle">Chapter 3: The Hammer of ScrubHub</div>
             <h1 class="slide-header">The Digital Overhaul Strategy</h1>
             <p>Introducing the branded iOS/Android app and unified Web experience. This isn't just software; it's a conversion engine.</p>
             
@@ -445,11 +617,53 @@
         </div>
     </div>
 
+
+    <!-- SLIDE 10B: APP FOUNDATION -->
+    <div class="slide" id="slide-10b">
+        <div class="content" id="content-10b">
+            <div class="slide-subtitle">Chapter 3: The Hammer of ScrubHub</div>
+            <h1 class="slide-header">The App Foundation</h1>
+            <p style="font-size:0.9rem; margin-bottom:10px;">A single, unified platform with 5 core tabs — everything the customer needs, nothing they don't.</p>
+            <table>
+                <tr>
+                    <th>The 5 Core Tabs</th>
+                    <th>Tab Name</th>
+                    <th>What the Customer Does Here</th>
+                </tr>
+                <tr>
+                    <td><strong>Tab 1: The Dashboard</strong></td>
+                    <td class="hud-font">Home</td>
+                    <td>See how much money they've saved, view their active plan, and buy Lightning Deals.</td>
+                </tr>
+                <tr>
+                    <td><strong>Tab 2: The Physical Asset</strong></td>
+                    <td class="hud-font">My Garage</td>
+                    <td>Add or remove cars and license plates (for the tunnel cameras).</td>
+                </tr>
+                <tr>
+                    <td><strong>Tab 3: The Store</strong></td>
+                    <td class="hud-font">Wash Plans</td>
+                    <td>Buy a new membership, upgrade a tier, or cancel a plan.</td>
+                </tr>
+                <tr>
+                    <td><strong>Tab 4: The Map</strong></td>
+                    <td class="hud-font">Locations</td>
+                    <td>Find the nearest wash, see if it's open, and get driving directions.</td>
+                </tr>
+                <tr>
+                    <td><strong>Tab 5: The Admin Hub</strong></td>
+                    <td class="hud-font">Account</td>
+                    <td>Update credit cards, view past receipts, and contact Help &amp; Support.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
     <!-- SLIDE 11: FEATURE-TO-ROI MAPPING -->
     <div class="slide" id="slide-11">
         <div class="content" id="content-11">
-            <div class="slide-subtitle">Chapter 3: The Proposed Solution</div>
-            <h1 class="slide-header">Feature-to-ROI Mapping</h1>
+            <div class="slide-subtitle">Chapter 3: The Hammer of ScrubHub</div>
+            <h1 class="slide-header">New Features</h1>
             
             <div class="hud-grid-3">
                 <div class="hud-box">
@@ -465,7 +679,7 @@
                 <div class="hud-box">
                     <strong class="hud-font">Proactive Churn Prevention</strong>
                     <p style="font-size: 0.9rem;">Automated push notifications for expiring credit cards.</p>
-                    <p class="red-text" style="font-size: 0.9rem;"><strong>ROI:</strong> Plugs the 3% Leak. Attacks involuntary churn, saving thousands of dollars a month.</p>
+                    <p class="red-text" style="font-size: 0.9rem;"><strong>ROI:</strong> Plugs the 3% Leak. Attacks involuntary churn, recovering thousands of dollars in monthly revenue.</p>
                 </div>
                 <div class="hud-box">
                     <strong class="hud-font">LPR Integration & Value HUD</strong>
@@ -504,7 +718,7 @@
     <!-- SLIDE 12: TECHNICAL ARCHITECTURE -->
     <div class="slide" id="slide-12">
         <div class="content" id="content-12">
-            <div class="slide-subtitle">Chapter 4: Operations & Risk Management</div>
+            <div class="slide-subtitle">Chapter 4: Marketing Overview</div>
             <h1 class="slide-header">Technical Architecture (Risk Mitigation)</h1>
             <div class="hud-box">
                 <h3 style="color: #fff;">The "Hybrid Approach"</h3>
@@ -525,9 +739,9 @@
     <!-- SLIDE 13: THE OPERATIONS DASHBOARD -->
     <div class="slide" id="slide-13">
         <div class="content" id="content-13">
-            <div class="slide-subtitle">Chapter 4: Operations & Risk Management</div>
+            <div class="slide-subtitle">Chapter 4: Marketing Overview</div>
             <h1 class="slide-header">The Operations Dashboard</h1>
-            <p>What the District Manager gets out of it: Real-time visibility into the metrics that matter.</p>
+            <p>Real-time visibility into the metrics that matter — your digital ROI, at a glance.</p>
             
             <div class="hud-grid">
                 <div class="hud-box">
@@ -539,6 +753,10 @@
                     <p>Split view of Voluntary (they chose to leave) vs Involuntary (failed credit card) churn, and the recovery rate.</p>
                 </div>
                 <div class="hud-box" style="grid-column: span 2;">
+                    <h3 class="red-text">Automatic Monthly Reports</h3>
+                    <p>Automated monthly summaries delivered directly to support your financial records and data tracking — no manual pulling required.</p>
+                </div>
+                <div class="hud-box" style="grid-column: span 2;">
                     <h3 class="red-text">Attributed Campaign Revenue</h3>
                     <p>Direct attribution for Weather-Triggered Alerts and Lightning Deals so you know exactly how much revenue the marketing engine generated.</p>
                 </div>
@@ -546,23 +764,40 @@
         </div>
     </div>
 
+
+    <!-- CHAPTER 5 TITLE: EXECUTION DETAILS -->
+    <div class="slide" id="slide-ch5">
+        <div class="game-overlay" id="overlay-ch5">
+            <div class="instructions">[ ACTIVE RELOAD — PRESS SPACE AT THE RIGHT MOMENT ]</div>
+            <div id="reload-status-ch5" style="font-family: 'Share Tech Mono'; color: #ff2a2a; font-size: 2rem; margin: 20px 0; text-shadow: 0 0 10px #ff0000;">PRESS SPACE TO RELOAD</div>
+            <div id="reload-bar-container-ch5" style="width: 400px; height: 30px; border: 2px solid #500; background: #1a0000; position: relative;">
+                <div id="reload-sweet-spot-ch5" style="position: absolute; height: 100%; top: 0; background: rgba(255,42,42,0.5); width: 60px; left: 250px;"></div>
+                <div id="reload-slider-ch5" style="position: absolute; height: 100%; width: 10px; background: #fff; top: 0; left: 0;"></div>
+            </div>
+        </div>
+        <div class="content" id="content-ch5" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; align-items: center;">
+            <div class="slide-subtitle" style="font-size: 1.5rem; margin-bottom: 20px;">CHAPTER 5</div>
+            <h1 class="slide-header" style="border: none; font-size: 5rem; margin-bottom: 0;">Execution Details</h1>
+        </div>
+    </div>
+
     <!-- SLIDE 14: IMPLEMENTATION TIMELINE -->
     <div class="slide" id="slide-14">
         <div class="content" id="content-14">
-            <div class="slide-subtitle">Chapter 5: Execution & Economics</div>
-            <h1 class="slide-header">Implementation Timeline</h1>
-            <p>A realistic, 12-week roadmap for deployment.</p>
+            <div class="slide-subtitle">Chapter 5: Execution Details</div>
+            <h1 class="slide-header">Execution Timeline</h1>
+            <p>A realistic, 16-week roadmap for deployment.</p>
             
             <div class="hud-box" style="margin-bottom: 15px;">
-                <h3 class="hud-font">Weeks 1-2: Discovery</h3>
+                <h3 class="hud-font">Weeks 1-3: Discovery</h3>
                 <p>Technical mapping of the DRB Certified Interface API and scoping.</p>
             </div>
             <div class="hud-box" style="margin-bottom: 15px;">
-                <h3 class="hud-font">Weeks 3-5: Design</h3>
+                <h3 class="hud-font">Weeks 4-7: Design</h3>
                 <p>High-fidelity UI/UX design, flow mapping, and approval.</p>
             </div>
             <div class="hud-box" style="margin-bottom: 15px;">
-                <h3 class="hud-font">Weeks 6-10: Build</h3>
+                <h3 class="hud-font">Weeks 8-13: Build</h3>
                 <p>Core development of the iOS App, Android App, and Website Redesign.</p>
             </div>
             <div class="hud-box">
@@ -575,8 +810,8 @@
     <!-- SLIDE 15: WHAT I NEED FROM YOU -->
     <div class="slide" id="slide-15">
         <div class="content" id="content-15">
-            <div class="slide-subtitle">Chapter 5: Execution & Economics</div>
-            <h1 class="slide-header">What I Need From You</h1>
+            <div class="slide-subtitle">Chapter 5: Execution Details</div>
+            <h1 class="slide-header">What We Need From You</h1>
             
             <div class="hud-grid">
                 <div class="hud-box">
@@ -591,55 +826,35 @@
                     <h3 style="color:#fff;">3. DRB Technical Access</h3>
                     <p>A technical point-of-contact for DRB POS to coordinate the Certified Interface API setup and credentials.</p>
                 </div>
+                <div class="hud-box" style="grid-column: span 2;">
+                    <h3 class="red-text">4. Approvals &amp; Commitments</h3>
+                    <ul style="font-size:0.95rem; color:#ccc; padding-left:20px; margin:0;">
+                        <li>Scope of Work Approval</li>
+                        <li>Budget Approvals for Services, Hosting &amp; Related Fees</li>
+                        <li>Weekly Check-ins</li>
+                        <li>Async communication via <strong>Google Chat</strong></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 16: INVESTMENT & ROI MODEL (ACTIVE RELOAD) -->
-    <div class="slide" id="slide-16">
-        <div class="game-overlay" id="overlay-16">
-            <div class="instructions">[ DECRYPTING INVESTMENT MODEL - PRESS SPACE TO ACTIVE RELOAD ]</div>
-            <div id="reload-status">WAITING...</div>
-            <div id="reload-bar-container">
-                <div id="reload-sweet-spot"></div>
-                <div id="reload-slider"></div>
-            </div>
-        </div>
-        <div class="content" id="content-16">
-            <div class="slide-subtitle">Chapter 5: Execution & Economics</div>
-            <h1 class="slide-header">Investment & ROI Model</h1>
-            
-            <div class="hud-grid" style="grid-template-columns: 1fr;">
-                <div class="hud-box" style="border-color: #fff;">
-                    <h3 style="color: #fff;">YOUR FIXED MANAGEMENT FEES (CAPEX)</h3>
-                    <div class="price-tag">$40,000 USD</div>
-                    <p>Complete custom iOS App, Android App, DRB API Integration, and Web Redesign.</p>
-                </div>
-                
-                <div class="hud-grid" style="margin-top:0;">
-                    <div class="hud-box">
-                        <h3 style="color: #fff;">FIXED OPERATIONAL FEES</h3>
-                        <p><strong>Email & Push Marketing: $1,500 / month.</strong><br>(Covers you running the "Growth Engine" — email automations, push notifications, unlimited email design campaigns)</p>
-                        <p><strong>Tech Maintenance: $1,000 / month.</strong><br>(Covers Apple/Google OS updates, bug fixes, and keeping the DRB integration running).</p>
-                    </div>
-                    <div class="hud-box">
-                        <h3 style="color: #fff;">SCALABLE INFRASTRUCTURE</h3>
-                        <p>Built to Grow (Hosting, Databases, etc.):</p>
-                        <p class="red-text"><strong>Expectation:</strong> Less than $150/month for the first 5,000 active users.</p>
-                        <p style="font-size: 0.9rem; color: #888;">Note: Includes third-party subscriptions like OneSignal for subscribers and database costs which scale linearly.</p>
-                    </div>
-                </div>
-            </div>
+
+    <!-- FINAL CHAPTER: BOSS FIGHT -->
+    <div class="slide" id="slide-final-ch" style="position:relative;">
+        <div class="content" id="content-final-ch" style="text-align:center; display:flex; flex-direction:column; justify-content:center; height:100%; align-items:center;">
+            <div class="slide-subtitle" style="font-size:1.5rem; margin-bottom:20px; color:#ff2a2a;">FINAL CHAPTER</div>
+            <h1 class="slide-header" style="border:none; font-size:7rem; margin-bottom:20px;">Boss Fight</h1>
+            <p class="hud-font" style="color:#666; font-size:1rem; animation:pulse 1.5s infinite;">[ PRESS NEXT TO ENGAGE ]</p>
         </div>
     </div>
 
     <!-- SLIDE 17: NEXT STEPS -->
     <div class="slide" id="slide-17">
-        <div class="content" id="content-17" style="text-align: center;">
-            <div class="slide-subtitle">Chapter 5: Execution & Economics</div>
-            <h1 class="slide-header" style="border: none; font-size: 5rem; margin-bottom: 0;">Next Steps & Q&A</h1>
-            <p class="hud-font" style="font-size: 1.5rem; margin-top: 20px;">Please approve the Discovery Phase to initiate timeline.</p>
-            <button class="nav-button" style="position: relative; margin-top: 50px; display: inline-block; border-color: #fff; color: #fff;" onclick="location.reload()">Restart Briefing</button>
+        <div class="content" id="content-17" style="text-align: center; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%;">
+            <h1 class="slide-header" style="border:none; font-size: 5rem; margin-bottom: 20px; color: #ff2a2a; text-shadow: 0 0 20px rgba(255,0,0,0.8);">Great Work, Soldier.</h1>
+            <h1 class="slide-header" style="border:none; font-size: 3.5rem; margin-bottom: 50px; color: #fff;">Any Questions?</h1>
+            <button class="nav-button" style="position: relative; display: inline-block; border-color: #fff; color: #fff;" onclick="location.reload()">Restart Briefing</button>
         </div>
     </div>
 
@@ -652,11 +867,12 @@
 
     <!-- Chainsaw Audio -->
     <audio id="chainsaw-sound" src="chainsaw.mp3" preload="auto"></audio>
+    <audio id="shotgun-sound" src="shotgun_v2.mp3" preload="auto"></audio>
 
     <!-- Journal Modal -->
     <div id="journal-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.9); z-index: 1000; align-items:center; justify-content:center;" onclick="if(event.target.id === 'journal-modal') closeJournal()">
-        <div style="position:relative; width: 800px; height: 600px; background: url('C:/Users/joshu/.gemini/antigravity/brain/474e2374-260b-4ead-bb38-6e0c1a12336c/war_torn_paper_1772777354577.png') center/cover; padding: 50px; box-sizing: border-box; box-shadow: 0 0 50px #000, inset 0 0 50px rgba(0,0,0,0.5); border-radius: 3px; color: #2a1f1a;">
-            <button onclick="closeJournal()" style="position:absolute; top:20px; right:20px; background:none; border:none; color:#800; font-family:'Anton'; font-size:2rem; cursor:pointer; text-shadow: 0 0 5px rgba(255,0,0,0.3);">X</button>
+        <div style="position:relative; width: 860px; height: 620px; background: #0a0000; border: 2px solid #ff2a2a; box-shadow: 0 0 60px rgba(255,0,0,0.3), inset 0 0 40px rgba(20,0,0,0.8); padding: 40px 50px; box-sizing: border-box; color: #ddd;">
+            <button onclick="closeJournal()" style="position:absolute; top:20px; right:20px; background:none; border:none; color:#ff2a2a; font-family:'Anton'; font-size:2rem; cursor:pointer; text-shadow: 0 0 10px rgba(255,0,0,0.5);">✕</button>
             <div id="journal-content" style="height:100%; width:100%; overflow-y:auto; padding-right: 15px;">
                 <!-- Content injected here -->
             </div>
@@ -669,9 +885,6 @@
         let slideUnlocked = false; // Prevents nav before chainsaw
 
         function updateNav() {
-            document.getElementById('slide-indicator').innerText = `SLIDE ${currentSlideIndex} / ${totalSlides}`;
-            document.getElementById('slide-indicator').style.display = slideUnlocked ? 'block' : 'none';
-            
             const btnPrev = document.getElementById('btn-prev');
             const btnNext = document.getElementById('btn-next');
             
@@ -705,41 +918,37 @@
 
         function nextSlide(num) {
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active-slide'));
-            document.getElementById('slide-' + num).classList.add('active-slide');
+            let slideEl = document.getElementById('slide-' + num);
+            if(!slideEl) return;
+            slideEl.classList.add('active-slide');
             currentSlideIndex = num;
             updateNav();
             
             const nextSlideElement = document.getElementById('slide-' + num);
+            // Shotgun slide init
+            if(num === 9) { setTimeout(initShotgunSlide, 100); }
+            // Hammer of Dawn boss battle (slide-16 is the arena)
+            if(nextSlideElement && nextSlideElement.id === 'slide-16') { setTimeout(initHammerOfDawn, 200); }
             
             if(num === 2) {
                 // Slide 2 is Agenda
                 revealContent(num);
-            } else if (nextSlideElement && nextSlideElement.id === 'slide-3') {
-                // Chapter 1 active reload
+            } else if (nextSlideElement && (nextSlideElement.id === 'slide-3' || nextSlideElement.id === 'slide-ch3' || nextSlideElement.id === 'slide-ch4' || nextSlideElement.id === 'slide-ch5')) {
+                let sfxMap = {
+                    'slide-3':   { overlayId: 'overlay-3', statusId: 'reload-status-3', sweetSpotId: 'reload-sweet-spot-3', sliderId: 'reload-slider-3', wrapperId: 'content-3', speed: 10 },
+                    'slide-ch3': { overlayId: 'overlay-ch3', statusId: 'reload-status-ch3', sweetSpotId: 'reload-sweet-spot-ch3', sliderId: 'reload-slider-ch3', wrapperId: 'content-ch3', speed: 10 },
+                    'slide-ch4': { overlayId: 'overlay-ch4', statusId: 'reload-status-ch4', sweetSpotId: 'reload-sweet-spot-ch4', sliderId: 'reload-slider-ch4', wrapperId: 'content-ch4', speed: 11 },
+                    'slide-ch5': { overlayId: 'overlay-ch5', statusId: 'reload-status-ch5', sweetSpotId: 'reload-sweet-spot-ch5', sliderId: 'reload-slider-ch5', wrapperId: 'content-ch5', speed: 12 },
+                };
+                let cfg = sfxMap[nextSlideElement.id];
                 startActiveReload({
-                    slideId: 'slide-3',
-                    overlayId: 'overlay-3',
-                    statusId: 'reload-status-3',
-                    sweetSpotId: 'reload-sweet-spot-3',
-                    sliderId: 'reload-slider-3',
-                    wrapperId: 'content-3',
-                    speed: 10,
-                    successText: "INTEL DECRYPTED. ACCESS GRANTED.",
-                    failText: "DECRYPTION FAILED. JAMMED."
+                    slideId: nextSlideElement.id,
+                    overlayId: cfg.overlayId, statusId: cfg.statusId,
+                    sweetSpotId: cfg.sweetSpotId, sliderId: cfg.sliderId,
+                    wrapperId: cfg.wrapperId, speed: cfg.speed,
+                    successText: "ACCESS GRANTED.", failText: "JAMMED. TRY AGAIN."
                 });
-            } else if (nextSlideElement && nextSlideElement.id === 'slide-16') {
-                // Investment active reload
-                startActiveReload({
-                    slideId: 'slide-16',
-                    overlayId: 'overlay-16',
-                    statusId: 'reload-status',
-                    sweetSpotId: 'reload-sweet-spot',
-                    sliderId: 'reload-slider',
-                    wrapperId: 'content-16',
-                    speed: 8,
-                    successText: "PERFECT RELOAD. DAMAGE BOOSTED.",
-                    failText: "GUN JAMMED."
-                });
+
             } else {
                 revealContent(num);
             }
@@ -783,6 +992,7 @@
         s2.style.zIndex = '10';
 
         document.addEventListener('keydown', (e) => {
+            logDebug('keydown ' + e.code + ' ' + progress); console.log('keydown', e.code, e.key, s1.classList.contains('active-slide'), progress);
             if ((e.code === 'KeyB' || e.key === 'b' || e.key === 'B') && s1.classList.contains('active-slide') && progress < 100) {
                 if (!isChainsawing) {
                     isChainsawing = true;
@@ -803,6 +1013,7 @@
         setInterval(() => {
             if (s1.classList.contains('active-slide')) {
                 let targetDuration = 2.5;
+                if(isChainsawing) logDebug('interval progress ' + progress);
 
                 if (isChainsawing) {
                     progress += (30 / (targetDuration * 1000)) * 100; 
@@ -880,82 +1091,430 @@
             
             overlay.style.opacity = 1;
             overlay.style.pointerEvents = 'auto';
-            status.innerHTML = "PRESS SPACE TO START";
+            status.innerHTML = "PRESS SPACE TO RELOAD";
             status.style.color = "#ff2a2a";
+            status.style.textShadow = "0 0 10px #ff0000";
 
-            let phase = 0; 
             let pos = 0;
-            let speed = config.speed; 
-            let reloadInterval;
+            let speed = config.speed;
+            let done = false;
+            let started = false;
             
-            // Randomize sweet spot
+            // Randomize sweet spot position
             let spotWidth = 60;
-            let minLeft = 100;
-            let maxLeft = 320;
+            let minLeft = 200;
+            let maxLeft = 330;
             let spotLeft = Math.floor(Math.random() * (maxLeft - minLeft + 1)) + minLeft;
             sweetSpot.style.left = spotLeft + 'px';
             sweetSpot.style.width = spotWidth + 'px';
+
+            let reloadInterval = null;
 
             function updateGame() {
                 pos += speed;
                 slider.style.left = pos + 'px';
                 if(pos > 400) {
                     clearInterval(reloadInterval);
-                    failReload();
+                    reloadInterval = null;
+                    started = false;
+                    if(!done) failReload();
                 }
             }
 
             function failReload() {
-                phase = 0;
+                done = false;
+                started = false;
                 status.innerHTML = config.failText;
                 status.style.color = "#800";
+                status.style.textShadow = "none";
                 setTimeout(() => {
                     pos = 0;
                     slider.style.left = '0px';
-                    status.innerHTML = "PRESS SPACE TO START";
+                    status.innerHTML = "PRESS SPACE TO RELOAD";
                     status.style.color = "#ff2a2a";
-                }, 1000);
+                    status.style.textShadow = "0 0 10px #ff0000";
+                }, 900);
             }
 
             function successReload() {
+                done = true;
                 clearInterval(reloadInterval);
                 status.innerHTML = config.successText;
                 status.style.color = "#fff";
                 status.style.textShadow = "0 0 20px #fff";
-                
-                // Visual flare
                 sweetSpot.style.background = "#fff";
                 sweetSpot.style.boxShadow = "0 0 30px #fff";
-                playShootSound();
 
                 setTimeout(() => {
                     overlay.style.opacity = 0;
                     overlay.style.pointerEvents = 'none';
                     if(s1Wrapper) s1Wrapper.classList.add('revealed');
-                    if(config.onSuccess) config.onSuccess();
-                }, 1000);
+                    // Auto-advance to next slide
+                    nextSlide(currentSlideIndex + 1);
+                }, 900);
             }
 
-            // Remove old handler if any and bind new
             document.onkeydown = function(e) {
-                if(e.code === 'Space' && document.getElementById('slide-' + currentSlideIndex) && document.getElementById('slide-' + currentSlideIndex).id === config.slideId) {
+                if(e.code === 'Space') {
                     e.preventDefault();
-                    if(phase === 0) {
-                        phase = 1;
+                    if(!started && !done) {
+                        started = true;
                         status.innerHTML = "RELOADING...";
                         status.style.color = "#ffaa00";
+                        status.style.textShadow = "0 0 10px #ff8800";
                         reloadInterval = setInterval(updateGame, 20);
-                    } else if(phase === 1) {
+                    } else if(started && !done) {
                         let sliderCenter = pos + 5;
+                        clearInterval(reloadInterval);
+                        reloadInterval = null;
+                        started = false;
                         if(sliderCenter >= spotLeft && sliderCenter <= (spotLeft + spotWidth)) {
                             successReload();
                         } else {
-                            clearInterval(reloadInterval);
                             failReload();
                         }
                     }
                 }
+            };
+        }
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        const swotData = {
+            'strength': `
+                <h3>STRENGTHS</h3>
+                <p><strong>1. Ability to Introduce a Membership-Driven Revenue Model</strong></p>
+                <p>ScrubHub can transition from primarily transactional washes to recurring membership revenue through a mobile and web platform.</p>
+                <p>Industry data shows that subscription memberships are becoming the dominant revenue source for large chains. For example, Mister Car Wash reports that approximately 74% of wash revenue now comes from its Unlimited Wash Club memberships, as detailed previously.</p>
+                <p><br><strong>2. Opportunity to Remove Payment Friction</strong></p>
+                <p>A ScrubHub app allows customers to pay automatically, manage subscriptions, and skip payment kiosks. Convenience is a vital driver: 73% of consumers say customer experience influences purchasing decisions.</p>
+                <p><em>Implication: Faster digital payments and frictionless entry can improve the customer experience and increase repeat visits.</em></p>
+                <p><br><strong>3. Ability to Capture Customer Data</strong></p>
+                <p>A mobile platform allows ScrubHub to collect data on visit frequency, purchase behavior, and customer lifetime value. Many traditional car washes operate blind without this intel.</p>
+                <p><em>Implication: ScrubHub can run targeted promotions, improve retention strategies, and make more data-driven business decisions.</em></p>
+                <p><br><strong>4. Strong Market Demand for Professional Services</strong></p>
+                <p>Professional car wash usage has grown significantly. The percentage of drivers using professional car washes increased from 50% in 1996 to about 79% in 2021.</p>
+                <p><em>Implication: Demand continues to expand, creating a favorable structural environment for growth.</em></p>
+            `,
+            'weakness': `
+                <h3>WEAKNESSES</h3>
+                <p><strong>1. Limited Digital Infrastructure Today</strong></p>
+                <p>If ScrubHub currently relies primarily on on-site payment kiosks and in-person transactions, the business likely lacks critical digital infrastructure such as mobile membership management, automated marketing, and loyalty tracking systems.</p>
+                <p><em>Implication: Without digital tools, it is harder to compete with larger chains that have already implemented these automated systems.</em></p>
+                <p><br><strong>2. Membership Churn Risk</strong></p>
+                <p>Membership businesses must manage churn carefully.</p>
+                <p>As previously mentioned, industry reports indicate that car wash memberships experience approximately 7.6% monthly churn, including both voluntary cancellations and failed payment churn.</p>
+                <p><em>Implication: If the business ramps up memberships, it must implement tools (apps, push notifications, automated billing management) to manage retention effectively and plug the leaks.</em></p>
+            `,
+            'opportunity': `
+                <h3>OPPORTUNITIES</h3>
+                <p><strong>1. Growing Global Car Wash Market</strong></p>
+                <p>The overall industry is expanding steadily. The global car wash services market was valued at .07 billion in 2024 and is expected to reach .51 billion by 2032.</p>
+                <p><em>Implication: Entering the digital space now allows the company to capture growth as the market expands globally.</em></p>
+                <p><br><strong>2. Loyalty Programs Increase Customer Spending</strong></p>
+                <p>Loyalty systems encourage repeat visits and higher spending. Research shows that 81% of consumers say loyalty programs make them more likely to continue doing business with a brand.</p>
+                <p><em>Implication: A digital loyalty system can increase visit frequency and customer lifetime value.</em></p>
+                <p><br><strong>3. Advanced Behavioral Retargeting</strong></p>
+                <p>With an automated marketing engine, if a customer opens an email and clicks but doesn't check out, we can immediately retarget them with push notifications or SMS.</p>
+                <p><em>Implication: Advanced multi-channel automation stops revenue from falling through the cracks of the marketing funnel.</em></p>
+            `,
+            'threat': `
+                <h3>THREATS</h3>
+                <p><strong>1. Increasing Competition</strong></p>
+                <p>The U.S. car wash industry has approximately 60,000 locations, creating strong local competition in nearly every geographic market.</p>
+                <p><em>Implication: Customers often have multiple car wash options nearby, making brand differentiation critically important. Convenience wins fights.</em></p>
+                <p><br><strong>2. Low Switching Costs for Customers</strong></p>
+                <p>Because there are roughly 60,000 locations, customers can easily choose another car wash if it offers faster service, better pricing, or a more functional loyalty app.</p>
+                <p><em>Implication: ScrubHub must create a relentlessly compelling customer experience to maintain loyalty, or risk losing members to chains that do.</em></p>
+            `
+        };
+
+        function openJournal(key) {
+            document.getElementById('journal-content').innerHTML = swotData[key];
+            document.getElementById('journal-modal').style.display = 'flex';
+        }
+        function closeJournal() {
+            document.getElementById('journal-modal').style.display = 'none';
+            document.getElementById('journal-content').innerHTML = '';
+        }
+
+        // ---- PARTICLE CHIP SHOTGUN SYSTEM ----
+        let shotgunChips = 100; // percentage of title remaining
+        let shotgunDone = false;
+        let shotgunHint = null;
+
+        function initShotgunSlide() {
+            shotgunChips = 100;
+            shotgunDone = false;
+            let title = document.getElementById('swot-target-title');
+            title.style.opacity = '1';
+            title.style.filter = '';
+            // Add hint
+            if (!shotgunHint) {
+                shotgunHint = document.createElement('div');
+                shotgunHint.className = 'shotgun-hint';
+                shotgunHint.innerHTML = '[ CLICK TO DESTROY THE TARGET — UNLEASH EVERY ROUND ]';
+                document.getElementById('slide-9').appendChild(shotgunHint);
+            }
+            shotgunHint.style.display = 'block';
+        }
+
+        function fireShotgun(event) {
+            if(shotgunDone) return;
+
+            let fxBox = document.getElementById('shotgun-fx-container');
+            let slide = document.getElementById('slide-9');
+            let title = document.getElementById('swot-target-title');
+
+            let rect = slide.getBoundingClientRect();
+            let x = event.clientX - rect.left;
+            let y = event.clientY - rect.top;
+
+            // Play shotgun sound
+            let snd = document.getElementById('shotgun-sound');
+            if(snd) { snd.currentTime = 0; snd.volume = 0.8; snd.play().catch(()=>{}); }
+
+            // Screen shake
+            slide.classList.add('shaking');
+            setTimeout(() => slide.classList.remove('shaking'), 150);
+
+            // Muzzle flash
+            let flash = document.createElement('div');
+            flash.className = 'flash';
+            flash.style.left = x + 'px';
+            flash.style.top = y + 'px';
+            fxBox.appendChild(flash);
+            setTimeout(() => flash.remove(), 200);
+
+            // Gun-side particles (spread from click point)
+            let numGunChips = 10 + Math.floor(Math.random() * 6);
+            for(let i = 0; i < numGunChips; i++) {
+                let chip = document.createElement('div');
+                chip.className = 'chip-particle';
+                let size = 4 + Math.random() * 8;
+                chip.style.width = size + 'px';
+                chip.style.height = size + 'px';
+                chip.style.left = (x - size/2 + (Math.random()-0.5)*25) + 'px';
+                chip.style.top  = (y - size/2 + (Math.random()-0.5)*15) + 'px';
+                chip.style.background = Math.random() > 0.5 ? '#fff' : '#ff2a2a';
+                let angle = Math.random() * 360;
+                let dist = 50 + Math.random() * 130;
+                chip.style.setProperty('--dx', (Math.cos(angle*Math.PI/180)*dist)+'px');
+                chip.style.setProperty('--dy', (Math.sin(angle*Math.PI/180)*dist+30)+'px');
+                chip.style.setProperty('--rot', (Math.random()*720-360)+'deg');
+                chip.style.animationDuration = (0.4+Math.random()*0.5)+'s';
+                fxBox.appendChild(chip);
+                setTimeout(() => chip.remove(), 1000);
+            }
+
+            // TEXT-side particles: chips fly off the title text
+            let titleRect = title.getBoundingClientRect();
+            let slideRect = slide.getBoundingClientRect();
+            let textChips = 12 + Math.floor(Math.random() * 8);
+            for(let i = 0; i < textChips; i++) {
+                let chip = document.createElement('div');
+                chip.className = 'chip-particle';
+                // Random position along the title text bbox
+                let tx = (titleRect.left - slideRect.left) + Math.random() * titleRect.width;
+                let ty = (titleRect.top  - slideRect.top)  + Math.random() * titleRect.height;
+                let size = 5 + Math.random() * 12;
+                chip.style.width  = size + 'px';
+                chip.style.height = (size * (0.4 + Math.random()*0.6)) + 'px';
+                chip.style.borderRadius = '1px';
+                chip.style.left = tx + 'px';
+                chip.style.top  = ty + 'px';
+                // Colours sampled from title (white, dim white, gray)
+                let colors = ['#fff','#ddd','#aaa','#ff2a2a','#ff6600'];
+                chip.style.background = colors[Math.floor(Math.random()*colors.length)];
+                let angle = -90 + (Math.random()-0.5)*180; // mostly upward/outward
+                let dist  = 40 + Math.random() * 120;
+                chip.style.setProperty('--dx', (Math.cos(angle*Math.PI/180)*dist)+'px');
+                chip.style.setProperty('--dy', (-Math.abs(Math.sin(angle*Math.PI/180)*dist)-20)+'px');
+                chip.style.setProperty('--rot', (Math.random()*900-450)+'deg');
+                chip.style.animationDuration = (0.5+Math.random()*0.6)+'s';
+                fxBox.appendChild(chip);
+                setTimeout(() => chip.remove(), 1200);
+            }
+
+            // Chip away at the title (each shot removes 8-15%)
+            let damage = 8 + Math.random() * 7;
+            shotgunChips = Math.max(0, shotgunChips - damage);
+            title.style.opacity = (shotgunChips / 100).toFixed(2);
+            title.style.filter = shotgunChips < 40 ? `blur(${(40-shotgunChips)/15}px)` : '';
+
+            // Red tint overlay grows
+            let frac = (100 - shotgunChips) / 100;
+            slide.style.background = `rgba(${Math.floor(frac*60)},0,0,1)`;
+
+            if(shotgunChips <= 0 && !shotgunDone) {
+                shotgunDone = true;
+                if(shotgunHint) shotgunHint.style.display = 'none';
+                title.style.opacity = '0';
+                // Wait for last particle wave to finish, then flash + advance
+                setTimeout(() => {
+                    slide.style.background = '';
+                    let bigFlash = document.createElement('div');
+                    bigFlash.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;z-index:100;pointer-events:none;animation:flashOut 0.8s forwards;';
+                    slide.appendChild(bigFlash);
+                    setTimeout(() => {
+                        bigFlash.remove();
+                        nextSlide(parseInt(currentSlideIndex) + 1);
+                    }, 900);
+                }, 1200);
             }
         }
 
+        // ---- HAMMER OF DAWN BOSS BATTLE ----
+        let hodActive = false;
+        let hodEnemies = [];
+        let hodAnimFrame = null;
+        let hodKills = 0;
+        const HOD_ENEMIES = ['Mister Car Wash', 'EverWash', 'Glaze Car Wash'];
+        const HOD_MAX_HITS = 3;
 
+        function initHammerOfDawn() {
+            hodActive = true;
+            hodKills = 0;
+            let arena = document.getElementById('hod-arena');
+            let content16 = document.getElementById('content-16');
+            let healthBar = document.getElementById('hod-health-fill');
+            let statusEl = document.getElementById('hod-status');
+
+            arena.style.display = 'block';
+            content16.style.display = 'none';
+            healthBar.style.width = '100%';
+            statusEl.innerHTML = 'HAMMER OF DAWN ACTIVATED — TAKE OUT THE COMPETITION';
+
+            // Clear old enemies
+            arena.querySelectorAll('.hod-enemy').forEach(e => e.remove());
+            hodEnemies = [];
+
+            HOD_ENEMIES.forEach((name, i) => {
+                let el = document.createElement('div');
+                el.className = 'hod-enemy';
+                el.innerHTML = '⚠ ' + name.toUpperCase() + ' ⚠';
+                el.dataset.name = name;
+                el.dataset.hits = 0;
+                el.style.left = (20 + i * 28) + '%';
+                el.style.top  = (20 + i * 18) + '%';
+                el.onclick = (ev) => { ev.stopPropagation(); strikeEnemy(el, ev); };
+                arena.appendChild(el);
+                
+                hodEnemies.push({
+                    el: el,
+                    x: parseFloat(el.style.left),
+                    y: parseFloat(el.style.top),
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    dead: false,
+                    hits: 0
+                });
+            });
+
+            animateEnemies();
+        }
+
+        function animateEnemies() {
+            if(!hodActive) return;
+            let arena = document.getElementById('hod-arena');
+            let arenaW = arena.offsetWidth;
+            let arenaH = arena.offsetHeight;
+            let speedMult = 1 + hodKills * 0.7; // faster with each kill
+
+            hodEnemies.forEach(e => {
+                if(e.dead) return;
+                e.x += e.vx * speedMult;
+                e.y += e.vy * speedMult;
+                // Bounce off edges
+                if(e.x < 2 || e.x > 80) e.vx *= -1;
+                if(e.y < 5 || e.y > 75) e.vy *= -1;
+                e.x = Math.max(2, Math.min(80, e.x));
+                e.y = Math.max(5, Math.min(75, e.y));
+                e.el.style.left = e.x + '%';
+                e.el.style.top  = e.y + '%';
+            });
+            hodAnimFrame = requestAnimationFrame(animateEnemies);
+        }
+
+        function strikeEnemy(el, event) {
+            let enemyData = hodEnemies.find(e => e.el === el);
+            if(!enemyData || enemyData.dead) return;
+
+            enemyData.hits++;
+            let pct = enemyData.hits / HOD_MAX_HITS;
+            el.style.opacity = (1 - pct * 0.6).toFixed(2);
+            el.style.borderColor = pct >= 1 ? '#fff' : '#ff6600';
+            el.classList.add('hit');
+            setTimeout(() => el.classList.remove('hit'), 300);
+
+            // Fire the beam
+            let rect = el.getBoundingClientRect();
+            let cx = rect.left + rect.width/2;
+            let cy = rect.top + rect.height/2;
+            fireHodBeam(cx, cy);
+
+            // Explosion on target
+            let exp = document.createElement('div');
+            exp.className = 'hod-explosion';
+            exp.style.left = cx + 'px';
+            exp.style.top  = cy + 'px';
+            exp.style.width = '80px'; exp.style.height = '80px';
+            document.body.appendChild(exp);
+            setTimeout(() => exp.remove(), 600);
+
+            if(enemyData.hits >= HOD_MAX_HITS) {
+                // Kill it
+                enemyData.dead = true;
+                el.classList.add('dead');
+                hodKills++;
+
+                // Update health bar
+                let pctLeft = (HOD_ENEMIES.length - hodKills) / HOD_ENEMIES.length;
+                document.getElementById('hod-health-fill').style.width = (pctLeft * 100) + '%';
+
+                let statusEl = document.getElementById('hod-status');
+                if(hodKills < HOD_ENEMIES.length) {
+                    statusEl.innerHTML = `TARGET NEUTRALIZED — ${HOD_ENEMIES.length - hodKills} REMAINING`;
+                } else {
+                    // All dead — victory! Advance to final slide
+                    hodActive = false;
+                    cancelAnimationFrame(hodAnimFrame);
+                    statusEl.innerHTML = '✓ COMPETITION ELIMINATED';
+                    document.getElementById('hod-health-fill').style.width = '0%';
+                    document.getElementById('hod-health-fill').style.background = '#00ff00';
+                    setTimeout(() => {
+                        nextSlide(currentSlideIndex + 1);
+                    }, 1200);
+                }
+            }
+        }
+
+        function fireHodBeam(tx, ty) {
+            // Beam from top of screen down to target
+            let beam = document.createElement('div');
+            beam.className = 'hod-beam';
+            let startX = tx;
+            let startY = 0;
+            let length = ty;
+            beam.style.left = startX + 'px';
+            beam.style.top  = startY + 'px';
+            beam.style.height = length + 'px';
+            document.body.appendChild(beam);
+            setTimeout(() => beam.remove(), 450);
+
+            // Targeting reticle
+            let ret = document.getElementById('hod-targeting-reticle');
+            ret.style.left = tx + 'px';
+            ret.style.top  = ty + 'px';
+            ret.style.display = 'block';
+            setTimeout(() => { ret.style.display = 'none'; }, 400);
+        }
+    </script>
+</body>
+</html>
