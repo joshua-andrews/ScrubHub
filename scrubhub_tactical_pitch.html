@@ -805,11 +805,14 @@
         function tryStartMainTheme() {
             if (!musicStarted) {
                 let mt = document.getElementById('main-theme');
-                if(mt) { mt.volume = 0.4; mt.play().catch(()=>{}); }
-                musicStarted = true;
+                if(mt) { mt.volume = 0.4; mt.play().then(() => { musicStarted = true; }).catch(()=>{}); }
             }
         }
-        document.addEventListener('click', tryStartMainTheme);
+        // Try immediately on load; browsers may block until first interaction
+        window.addEventListener('load', tryStartMainTheme);
+        // Retry on first interaction as fallback (browser autoplay policy)
+        document.addEventListener('click', tryStartMainTheme, { once: true });
+        document.addEventListener('keydown', tryStartMainTheme, { once: true });
 
         function updateNav() {
             const btnPrev = document.getElementById('btn-prev');
