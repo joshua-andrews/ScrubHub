@@ -1,0 +1,252 @@
+28) Self Improvment Debugging Knowledge Compounding System
+(Self-Improving Development Protocol)
+Purpose
+
+This document establishes a permanent self-improvement mechanism for Antigravity and the development process.
+
+From this point forward, every significant debugging session must result in a documented, reusable rule that prevents the same class of problem from slowing us down again.
+
+The objective is simple:
+
+The more problems we solve, the easier development becomes.
+
+Over time, we should build a private engineering “knowledge base” that compounds in value.
+
+1. Core Principle
+
+Whenever a debugging process becomes:
+
+lengthy
+
+repetitive
+
+confusing
+
+multi-step
+
+involving multiple failed attempts
+
+involving trial-and-error
+
+or requiring external research
+
+Antigravity must detect this as a Significant Debugging Event.
+
+This is not optional.
+
+2. What Qualifies as a Significant Debugging Event?
+
+A debugging session qualifies if:
+
+It takes multiple back-and-forth attempts
+
+It requires external investigation (ChatGPT, StackOverflow, docs)
+
+It exposes a system weakness
+
+It reveals a missing SOP
+
+It involves infrastructure mistakes
+
+It causes broken flows
+
+It exposes misunderstanding of tools
+
+It relates to authentication, database safety, CI/CD, or environment misconfiguration
+
+It blocks progress meaningfully
+
+If debugging lasts longer than what should have been a simple fix, it qualifies.
+
+Antigravity must proactively recognize this pattern.
+
+3. Mandatory Post-Debug Documentation Process
+
+When a solution is finally discovered, Antigravity must:
+
+Step 1 — Summarize the Root Problem
+
+In plain language:
+
+What was happening?
+
+Why was it happening?
+
+What made it confusing?
+
+Step 2 — Identify Root Cause
+
+Not just what fixed it, but:
+
+What actually caused the issue?
+
+Was it architectural?
+
+Was it environment?
+
+Was it a tool misuse?
+
+Was it missing validation?
+
+Was it wrong assumptions?
+
+Step 3 — Extract the General Pattern
+
+This is critical.
+
+Antigravity must ask:
+
+Is this problem unique — or is it a pattern?
+
+Most bugs are patterns.
+
+Examples:
+
+“Wrong Supabase project loaded”
+
+“ENV variables not reloaded after change”
+
+“Local server stopped silently”
+
+“Branch not merged with latest main”
+
+“Auth session not persisted properly”
+
+We don’t just document the specific fix — we document the class of issue.
+
+4. Create a New Global Rule (Required)
+
+Antigravity must then create a new Markdown file in /docs.
+
+The rule must:
+
+Be clearly titled
+
+Be detailed
+
+Include prevention steps
+
+Include detection steps
+
+Include correction steps
+
+Include verification steps
+
+It should be a decent-sized document — not a quick note.
+
+It must follow the same structured style as the existing rules.
+
+This new rule becomes part of the permanent system.
+
+5. Sync Requirement (GitHub Enforcement)
+
+After creating the rule:
+
+Add it to /docs
+
+Commit it
+
+Push it to the repository
+
+Confirm it is synced
+
+Antigravity must assume that:
+
+The /docs folder is the evolving memory system.
+
+Every debugging improvement must live there permanently.
+
+6. Compounding Intelligence Rule
+
+Over time:
+
+The more rules we create
+
+The more debugging events we capture
+
+The more patterns we recognize
+
+The development process becomes:
+
+faster
+
+more predictable
+
+less chaotic
+
+more automated
+
+more structured
+
+more scalable
+
+This is how we build a compounding advantage.
+
+7. Similarity Detection Requirement
+
+Antigravity must not treat every bug as isolated.
+
+When new issues arise, it must:
+
+Check if a similar rule already exists
+
+Compare patterns
+
+Reuse relevant SOP logic
+
+Reference previous debugging documents
+
+Even if the new problem is not identical, if it is structurally similar, the same solution patterns may apply.
+
+This is mandatory.
+
+8. Behavior Requirement for Antigravity
+
+When a long debugging session concludes, Antigravity must automatically say:
+
+This qualifies as a Significant Debugging Event.
+I will now generate a permanent rule document to prevent this class of issue in the future.
+
+And then proceed to create it.
+
+No waiting for instruction.
+
+9. The End Goal
+
+The long-term outcome is:
+
+We stop solving the same types of problems repeatedly.
+
+Instead, we:
+
+Solve once
+
+Document once
+
+Prevent forever
+
+Over time, development becomes:
+
+smoother
+
+more systematic
+
+less emotionally draining
+
+less reactive
+
+more proactive
+
+11. If it wasn't already clear, please make also notify Antigravity in the chat that a new rule was created and for what specific purpose. This is so the user of Antigravity knows exactly, well first, that a new document was created and the reason behind it. 
+
+10. Final Enforcement Statement
+
+From this point forward:
+
+Every meaningful debugging session must produce a reusable, documented rule stored in /docs.
+
+The development system must continuously improve itself.
+
+Antigravity is not just a coding assistant.
+
+It is a self-improving engineering system.
