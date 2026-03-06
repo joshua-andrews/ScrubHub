@@ -159,114 +159,21 @@
         /* CROSSHAIR CURSOR */
         #slide-9 { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' stroke='%23ff2a2a' stroke-width='1.5' fill='none'/%3E%3Cline x1='20' y1='2' x2='20' y2='12' stroke='%23ff2a2a' stroke-width='1.5'/%3E%3Cline x1='20' y1='28' x2='20' y2='38' stroke='%23ff2a2a' stroke-width='1.5'/%3E%3Cline x1='2' y1='20' x2='12' y2='20' stroke='%23ff2a2a' stroke-width='1.5'/%3E%3Cline x1='28' y1='20' x2='38' y2='20' stroke='%23ff2a2a' stroke-width='1.5'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23ff2a2a'/%3E%3C/svg%3E") 20 20, crosshair; }
 
-        /* HAMMER OF DAWN */
-        .hod-enemy {
-            position: absolute;
-            font-family: 'Share Tech Mono';
-            font-size: 0.85rem;
-            color: #ff2a2a;
-            text-align: center;
-            cursor: crosshair;
-            user-select: none;
-            padding: 8px 12px;
-            border: 1px solid #500;
-            background: rgba(20,0,0,0.8);
-            transition: none;
-            z-index: 20;
-            text-shadow: 0 0 8px rgba(255,0,0,0.5);
-            white-space: nowrap;
-        }
-        .hod-enemy.hit {
-            animation: enemyHit 0.3s ease-out forwards;
-        }
-        .hod-enemy.dead {
-            display: none;
-        }
-        @keyframes enemyHit {
-            0% { transform: scale(1); filter: brightness(3); }
-            50% { transform: scale(1.3); }
-            100% { transform: scale(1); filter: brightness(1); }
-        }
-        .hod-beam {
-            position: fixed;
-            width: 4px;
-            background: linear-gradient(to bottom, transparent, #ff6600, #ff2a2a, #fff);
-            transform-origin: top center;
-            pointer-events: none;
-            z-index: 999;
-            box-shadow: 0 0 20px #ff4400, 0 0 40px #ff2a2a;
-            animation: beamFire 0.4s ease-out forwards;
-        }
-        @keyframes beamFire {
-            0% { opacity: 1; width: 6px; }
-            100% { opacity: 0; width: 2px; }
-        }
-        .hod-explosion {
-            position: fixed;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 998;
-            background: radial-gradient(circle, #fff 0%, #ff6600 30%, #ff2a2a 60%, transparent 100%);
-            animation: explode 0.5s ease-out forwards;
-        }
-        @keyframes explode {
-            0% { transform: translate(-50%,-50%) scale(0); opacity: 1; }
-            100% { transform: translate(-50%,-50%) scale(3); opacity: 0; }
-        }
-        #hod-health-bar {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 400px;
-            height: 20px;
-            border: 2px solid #ff2a2a;
-            background: #1a0000;
-            z-index: 30;
-        }
-        #hod-health-fill {
-            height: 100%;
-            background: linear-gradient(to right, #ff2a2a, #ff6600);
-            width: 100%;
-            transition: width 0.4s ease;
-            box-shadow: 0 0 15px #ff2a2a;
-        }
-        #hod-status {
-            position: absolute;
-            bottom: 58px;
-            width: 100%;
-            text-align: center;
-            font-family: 'Anton';
-            font-size: 1.3rem;
-            color: #ff2a2a;
-            letter-spacing: 2px;
-            z-index: 30;
-            text-shadow: 0 0 10px rgba(255,0,0,0.8);
-        }
-        #hod-ammo {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            font-family: 'Share Tech Mono';
-            font-size: 1rem;
-            color: #ff6600;
-            z-index: 30;
-        }
-        #hod-targeting-reticle {
-            position: fixed;
-            pointer-events: none;
-            z-index: 997;
-            border: 2px solid #ff6600;
-            border-radius: 50%;
-            width: 60px; height: 60px;
-            box-shadow: 0 0 20px #ff4400;
-            display: none;
-            animation: reticleAnim 0.1s ease-in-out;
-        }
-        @keyframes reticleAnim {
-            0%  { transform: translate(-50%,-50%) scale(2); opacity:0; }
-            100%{ transform: translate(-50%,-50%) scale(1); opacity:1; }
-        }
+        /* === NEW HAMMER OF DAWN CSS === */
+        #boss-arena { width: 100%; height: 80%; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .boss-wrapper { position: absolute; left: 50%; top: 50%; transition: transform 1.2s ease-in-out; cursor: crosshair; display: flex; flex-direction: column; align-items: center; z-index: 50; }
+        .everwash-logo { width: 250px; height: 80px; background: #fff; border: 4px solid #0056b3; border-radius: 8px; position: relative; box-shadow: 0 0 15px rgba(0, 86, 179, 0.5); display: flex; justify-content: center; align-items: center; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 2.2rem; color: #0056b3; font-style: italic; letter-spacing: -1px; z-index: 5; overflow: hidden; }
+        .everwash-logo::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%); transform: rotate(30deg); animation: shine 3s infinite linear; }
+        @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+        .boss-health-container { width: 200px; height: 12px; background: #1a0000; border: 2px solid #330000; border-radius: 3px; margin-bottom: 20px; overflow: hidden; position: relative; z-index: 10; }
+        #boss-health-bar { width: 100%; height: 100%; background: #ff0000; box-shadow: 0 0 10px #ff0000; transition: width 0.2s; }
+        .hammer-beam-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
+        .hammer-beam-core { position: absolute; top: -100%; width: 120px; height: 200%; background: #fff; box-shadow: 0 0 50px #fff, 0 0 100px #ff8c00, 0 0 200px #ff0000, 0 0 300px #ff0000; opacity: 0; transition: opacity 0.1s, top 0.2s cubic-bezier(0.1, 0.9, 0.2, 1); transform: translateX(-50%); border-radius: 100px; }
+        .impact-crater { position: absolute; width: 0px; height: 0px; background: transparent; border: 10px solid #fff; border-radius: 50%; opacity: 0; transform: translate(-50%, -50%); box-shadow: 0 0 50px #ff8c00, inset 0 0 50px #ff0000; }
+        @keyframes impactExpand { 0% { width: 0; height: 0; opacity: 1; border-width: 20px;} 100% { width: 400px; height: 400px; opacity: 0; border-width: 2px;} }
+        .blood-particle { position: absolute; width:10px; height:10px; background:#b30000; border-radius:50%; pointer-events:none; box-shadow:0 0 5px #ff0000; }
+        .screen-shake-anim { animation: shake-screen 0.2s; }
+        @keyframes shake-screen { 0% { transform: translate(5px, 5px) rotate(0deg); } 25% { transform: translate(-5px, -5px) rotate(-1deg); } 50% { transform: translate(-5px, 5px) rotate(1deg); } 75% { transform: translate(5px, -5px) rotate(-1deg); } 100% { transform: translate(0, 0) rotate(0deg); } }
 
     </style>
 </head>
@@ -880,12 +787,39 @@
     </div>
 
 
-    <!-- SLIDE 17: NEXT STEPS -->
+    <!-- SLIDE 16: FINAL CHAPTER -->
+    <div class="slide" id="slide-16">
+        <div class="content" id="content-16" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; align-items: center; transition: opacity 0.3s; z-index: 50;">
+            <div class="slide-subtitle" style="font-size: 1.5rem; margin-bottom: 20px;">FINAL CHAPTER</div>
+            <h1 class="slide-header" style="border: none; font-size: 5rem; margin-bottom: 0;">BOSS FIGHT</h1>
+        </div>
+        <div class="instructions" style="position: absolute; bottom: 80px; width: 100%; text-align: center; font-family: 'Share Tech Mono'; font-size: 1rem; color: rgba(255,42,42,0.7); pointer-events: none; z-index: 55; animation: pulse 1.5s infinite;">[ INITIATING BOSS SEQUENCE - STAND BY ]</div>
+    </div>
+
+    <!-- SLIDE 17: HAMMER OF DAWN vs MISTER WASH -->
     <div class="slide" id="slide-17">
-        <div class="content" id="content-17" style="text-align: center; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%;">
-            <h1 class="slide-header" style="border:none; font-size: 5rem; margin-bottom: 20px; color: #ff2a2a; text-shadow: 0 0 20px rgba(255,0,0,0.8);">Great Work, Soldier.</h1>
-            <h1 class="slide-header" style="border:none; font-size: 3.5rem; margin-bottom: 50px; color: #fff;">Any Questions?</h1>
-            <button class="nav-button" style="position: relative; display: inline-block; border-color: #fff; color: #fff;" onclick="location.reload()">Restart Briefing</button>
+        <div class="game-overlay" id="overlay-17" style="background: rgba(5,0,0,0.7); backdrop-filter: none;">
+            <div class="instructions" id="hod-instructions" style="position: absolute; top: 40px; font-size: 1.5rem;">[ COMPETITOR DETECTED - CLICK TARGET TO CALL HAMMER OF DAWN ]</div>
+            <div id="boss-arena">
+                <div class="boss-wrapper" id="boss-target">
+                    <div class="boss-health-container">
+                        <div id="boss-health-bar"></div>
+                    </div>
+                    <div class="everwash-logo" id="everwash-body">
+                        Mister Wash
+                    </div>
+                </div>
+            </div>
+            <div class="hammer-beam-container" id="beam-container"></div>
+        </div>
+    </div>
+
+    <!-- SLIDE 18: NEXT STEPS -->
+    <div class="slide" id="slide-18">
+        <div class="content" id="content-18" style="text-align: center; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%;">
+            <h1 class="slide-header" style="border:none; font-size: 6rem; margin-bottom: 20px; color: #ff2a2a; text-shadow: 0 0 20px rgba(255,0,0,0.8);">Great job soldier.</h1>
+            <h1 class="slide-header" style="border:none; font-size: 4.5rem; margin-bottom: 50px; color: #fff;">Got any questions?</h1>
+            <button class="nav-button" style="position: relative; display: inline-block; border-color: #ff2a2a; color: #ff2a2a; font-size: 1.5rem; padding: 15px 30px;" onclick="location.reload()">Restart Mission</button>
         </div>
     </div>
 
@@ -912,7 +846,7 @@
 
     <script>
         let currentSlideIndex = 1;
-        const totalSlides = 17;
+        const totalSlides = 18;
         let slideUnlocked = false; // Prevents nav before chainsaw
 
         function updateNav() {
@@ -958,12 +892,14 @@
             const nextSlideElement = document.getElementById('slide-' + num);
             // Shotgun slide init
             if(num === 9) { setTimeout(initShotgunSlide, 100); }
-            // Hammer of Dawn boss battle
-            if(nextSlideElement && (nextSlideElement.id === 'slide-16' || nextSlideElement.id === 'slide-final-ch')) { setTimeout(initHammerOfDawn, 200); }
+            if(num === 16) { setTimeout(() => { nextSlide(17); }, 3000); }
+            if(num === 17) { setTimeout(startBoss, 200); }
             
             if(num === 2) {
                 // Slide 2 is Agenda
                 revealContent(num);
+            } else if (num === 17) {
+                // Boss fight handles its own overlay, DO NOT revealContent
             } else if (nextSlideElement && (nextSlideElement.id === 'slide-3' || nextSlideElement.id === 'slide-ch3' || nextSlideElement.id === 'slide-ch4' || nextSlideElement.id === 'slide-ch5' || nextSlideElement.id === 'slide-ch4')) {
                 let sfxMap = {
                     'slide-3':   { overlayId: 'overlay-3',    statusId: 'reload-status-3',    sweetSpotId: 'reload-sweet-spot-3',    sliderId: 'reload-slider-3',    wrapperId: 'content-3',    speed: 10 },
@@ -1407,158 +1343,158 @@
         }
 
         // ---- HAMMER OF DAWN BOSS BATTLE ----
+        let bossWrapper = document.getElementById('boss-target');
+        let healthBar = document.getElementById('boss-health-bar');
+        let beamContainer = document.getElementById('beam-container');
+        let logoBody = document.getElementById('everwash-body');
+        
+        let bossHealth = 100;
+        let isBossAlive = true;
+        let currentIntervalTimer = 1500;
+        let bossMovementTimeout;
         let hodActive = false;
-        let hodEnemies = [];
-        let hodAnimFrame = null;
-        let hodKills = 0;
-        const HOD_ENEMIES = ['Mister Car Wash', 'EverWash', 'Glaze Car Wash'];
-        const HOD_MAX_HITS = 3;
 
-        function initHammerOfDawn() {
-            hodActive = true;
-            hodKills = 0;
-            let arena = document.getElementById('hod-arena');
-            let titleScreen = document.getElementById('hod-title-screen');
-            let healthBar = document.getElementById('hod-health-fill');
-            let statusEl = document.getElementById('hod-status');
+        function moveBoss() {
+            if (!isBossAlive || !hodActive) return;
+            const w = window.innerWidth * 0.4;
+            const h = window.innerHeight * 0.35;
+            const currentX = (Math.random() * w * 2) - w;
+            const currentY = (Math.random() * h * 2) - h;
+            bossWrapper.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px))`;
+            bossMovementTimeout = setTimeout(moveBoss, currentIntervalTimer);
+        }
 
-            // Show title for 2 seconds then fade to battle
-            arena.style.opacity = '0';
-            if(titleScreen) titleScreen.style.opacity = '1';
-            healthBar.style.width = '100%';
-            statusEl.innerHTML = 'ELIMINATE THE COMPETITION';
+        function createBloodSplatter(x, y) {
+            const particleCount = 20;
+            for(let i=0; i<particleCount; i++) {
+                const p = document.createElement('div');
+                p.className = 'blood-particle';
+                p.style.left = `${x}px`;
+                p.style.top = `${y}px`;
+                beamContainer.appendChild(p);
 
-            setTimeout(() => {
-                if(titleScreen) { titleScreen.style.opacity = '0'; }
-                setTimeout(() => {
-                    if(titleScreen) titleScreen.style.display = 'none';
-                    arena.style.opacity = '1';
-                }, 800);
-            }, 2000);
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 300 + 100;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
 
-            // Clear old enemies
-            arena.querySelectorAll('.hod-enemy').forEach(e => e.remove());
-            hodEnemies = [];
-
-            HOD_ENEMIES.forEach((name, i) => {
-                let el = document.createElement('div');
-                el.className = 'hod-enemy';
-                el.innerHTML = '⚠ ' + name.toUpperCase() + ' ⚠';
-                el.dataset.name = name;
-                el.dataset.hits = 0;
-                el.style.left = (20 + i * 28) + '%';
-                el.style.top  = (20 + i * 18) + '%';
-                el.onclick = (ev) => { ev.stopPropagation(); strikeEnemy(el, ev); };
-                arena.appendChild(el);
-                
-                hodEnemies.push({
-                    el: el,
-                    x: parseFloat(el.style.left),
-                    y: parseFloat(el.style.top),
-                    vx: (Math.random() - 0.5) * 0.4,
-                    vy: (Math.random() - 0.5) * 0.3,
-                    dead: false,
-                    hits: 0
+                p.animate([
+                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                    { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 600 + Math.random() * 400,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    fill: 'forwards'
                 });
-            });
 
-            animateEnemies();
-        }
-
-        function animateEnemies() {
-            if(!hodActive) return;
-            let arena = document.getElementById('hod-arena');
-            let arenaW = arena.offsetWidth;
-            let arenaH = arena.offsetHeight;
-            let speedMult = 1 + hodKills * 0.7; // faster with each kill
-
-            hodEnemies.forEach(e => {
-                if(e.dead) return;
-                e.x += e.vx * speedMult;
-                e.y += e.vy * speedMult;
-                // Bounce off edges
-                if(e.x < 2 || e.x > 80) e.vx *= -1;
-                if(e.y < 5 || e.y > 75) e.vy *= -1;
-                e.x = Math.max(2, Math.min(80, e.x));
-                e.y = Math.max(5, Math.min(75, e.y));
-                e.el.style.left = e.x + '%';
-                e.el.style.top  = e.y + '%';
-            });
-            hodAnimFrame = requestAnimationFrame(animateEnemies);
-        }
-
-        function strikeEnemy(el, event) {
-            let enemyData = hodEnemies.find(e => e.el === el);
-            if(!enemyData || enemyData.dead) return;
-
-            enemyData.hits++;
-            let pct = enemyData.hits / HOD_MAX_HITS;
-            el.style.opacity = (1 - pct * 0.6).toFixed(2);
-            el.style.borderColor = pct >= 1 ? '#fff' : '#ff6600';
-            el.classList.add('hit');
-            setTimeout(() => el.classList.remove('hit'), 300);
-
-            // Fire the beam
-            let rect = el.getBoundingClientRect();
-            let cx = rect.left + rect.width/2;
-            let cy = rect.top + rect.height/2;
-            fireHodBeam(cx, cy);
-
-            // Explosion on target
-            let exp = document.createElement('div');
-            exp.className = 'hod-explosion';
-            exp.style.left = cx + 'px';
-            exp.style.top  = cy + 'px';
-            exp.style.width = '80px'; exp.style.height = '80px';
-            document.body.appendChild(exp);
-            setTimeout(() => exp.remove(), 600);
-
-            if(enemyData.hits >= HOD_MAX_HITS) {
-                // Kill it
-                enemyData.dead = true;
-                el.classList.add('dead');
-                hodKills++;
-
-                // Update health bar
-                let pctLeft = (HOD_ENEMIES.length - hodKills) / HOD_ENEMIES.length;
-                document.getElementById('hod-health-fill').style.width = (pctLeft * 100) + '%';
-
-                let statusEl = document.getElementById('hod-status');
-                if(hodKills < HOD_ENEMIES.length) {
-                    statusEl.innerHTML = `TARGET NEUTRALIZED — ${HOD_ENEMIES.length - hodKills} REMAINING`;
-                } else {
-                    // All dead — victory! Advance to final slide
-                    hodActive = false;
-                    cancelAnimationFrame(hodAnimFrame);
-                    statusEl.innerHTML = '✓ COMPETITION ELIMINATED';
-                    document.getElementById('hod-health-fill').style.width = '0%';
-                    document.getElementById('hod-health-fill').style.background = '#00ff00';
-                    setTimeout(() => {
-                        nextSlide(currentSlideIndex + 1);
-                    }, 1200);
-                }
+                setTimeout(() => p.remove(), 1200);
             }
         }
 
-        function fireHodBeam(tx, ty) {
-            // Beam from top of screen down to target
-            let beam = document.createElement('div');
-            beam.className = 'hod-beam';
-            let startX = tx;
-            let startY = 0;
-            let length = ty;
-            beam.style.left = startX + 'px';
-            beam.style.top  = startY + 'px';
-            beam.style.height = length + 'px';
-            document.body.appendChild(beam);
-            setTimeout(() => beam.remove(), 450);
+        function triggerHammerStrike(x, y) {
+            const beam = document.createElement('div');
+            beam.className = 'hammer-beam-core';
+            beam.style.left = `${x}px`;
+            beamContainer.appendChild(beam);
 
-            // Targeting reticle
-            let ret = document.getElementById('hod-targeting-reticle');
-            ret.style.left = tx + 'px';
-            ret.style.top  = ty + 'px';
-            ret.style.display = 'block';
-            setTimeout(() => { ret.style.display = 'none'; }, 400);
+            const crater = document.createElement('div');
+            crater.className = 'impact-crater';
+            crater.style.left = `${x}px`;
+            crater.style.top = `${y}px`;
+            beamContainer.appendChild(crater);
+
+            setTimeout(() => {
+                beam.style.top = '0';
+                beam.style.opacity = '1';
+                crater.style.animation = 'impactExpand 0.6s cubic-bezier(0.21, 0.53, 0.56, 1) forwards';
+                
+                document.body.classList.remove('screen-shake-anim');
+                void document.body.offsetWidth; 
+                document.body.classList.add('screen-shake-anim');
+
+                createBloodSplatter(x, y);
+
+                setTimeout(() => {
+                    beam.style.opacity = '0';
+                    setTimeout(() => { beam.remove(); crater.remove(); }, 500);
+                }, 400);
+
+            }, 50);
+        }
+
+        function updateDifficulty() {
+            if (bossHealth <= 66 && bossHealth > 33) {
+                currentIntervalTimer = 800;
+                bossWrapper.style.transition = 'transform 0.7s ease-in-out';
+            } else if (bossHealth <= 33) {
+                currentIntervalTimer = 350;
+                bossWrapper.style.transition = 'transform 0.3s cubic-bezier(0.25, 1, 0.5, 1)';
+            }
+        }
+
+        function startBoss() {
+            if(hodActive) return; 
+            hodActive = true;
+            bossHealth = 100;
+            isBossAlive = true;
+            bossWrapper.style.transform = `translate(-50%, -50%)`;
+            bossWrapper.style.opacity = '1';
+            logoBody.innerHTML = 'Mister Wash';
+            logoBody.style.background = '#fff';
+            logoBody.style.color = '#0056b3';
+            logoBody.style.borderColor = '#0056b3';
+            healthBar.style.width = '100%';
+            currentIntervalTimer = 1500;
+            
+            bossMovementTimeout = setTimeout(moveBoss, 700); 
+
+            bossWrapper.onmousedown = (e) => {
+                if(!isBossAlive || !hodActive) return;
+                
+                triggerHammerStrike(e.clientX, e.clientY);
+
+                bossHealth -= 34;
+                if(bossHealth < 0) bossHealth = 0;
+                healthBar.style.width = `${bossHealth}%`;
+                
+                updateDifficulty();
+                clearTimeout(bossMovementTimeout);
+                moveBoss();
+
+                logoBody.style.background = '#ff0000'; 
+                logoBody.style.color = '#fff';
+                logoBody.style.borderColor = '#ff0000';
+                setTimeout(() => {
+                    if(isBossAlive) {
+                        logoBody.style.background = '#fff';
+                        logoBody.style.color = '#0056b3';
+                        logoBody.style.borderColor = '#0056b3';
+                    }
+                }, 150);
+
+                if (bossHealth <= 0) {
+                    isBossAlive = false;
+                    hodActive = false;
+                    clearTimeout(bossMovementTimeout);
+                    
+                    logoBody.style.background = '#1a0000';
+                    logoBody.style.borderColor = '#ff0000';
+                    logoBody.style.boxShadow = 'none';
+                    logoBody.innerHTML = '<span style="color:#ff0000;">VAPORIZED</span>';
+                    
+                    setTimeout(() => {
+                        bossWrapper.style.opacity = '0';
+                        setTimeout(() => nextSlide(18), 1000);
+                    }, 1200);
+                }
+            };
+            
+            document.getElementById('slide-17').onmousedown = (e) => {
+                if(!isBossAlive || !hodActive) return;
+                if (e.target.id === 'slide-17' || e.target.id === 'overlay-17' || e.target.id === 'boss-arena') {
+                    triggerHammerStrike(e.clientX, e.clientY);
+                }
+            };
         }
     </script>
 </body>
