@@ -447,10 +447,10 @@
     </div>
 
 
-    <!-- SLIDE 8.5: SWOT TITLE (SHOTGUN TRANSITION) -->
+    <!-- SLIDE 9: SWOT TITLE (SHOTGUN TRANSITION) -->
     <div class="slide" id="slide-9" style="position:relative; cursor: crosshair;" onclick="fireShotgun(event)">
         <div class="content" id="content-9" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; align-items: center; transition: opacity 0.3s; z-index: 50;">
-            <div class="slide-subtitle" style="font-size: 1.5rem; margin-bottom: 20px;">CHAPTER 2</div>
+            <div class="slide-subtitle" id="swot-subtitle" style="font-size: 1.5rem; margin-bottom: 20px;">CHAPTER 2</div>
             <h1 id="swot-target-title" class="slide-header" style="border: none; font-size: 5rem; margin-bottom: 0; pointer-events: none;">Strategic Analysis</h1>
         </div>
         <div id="shotgun-fx-container" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 40;"></div>
@@ -484,76 +484,37 @@
         </div>
     </div>
 
-    <!-- CHAPTER 3 TITLE: THE HAMMER OF SCRUBHUB -->
-    <div class="slide" id="slide-ch3" style="position:relative;">
-        <div class="game-overlay" id="overlay-ch3">
-            <div class="instructions">[ ACTIVE RELOAD — PRESS SPACE AT THE RIGHT MOMENT ]</div>
-            <div id="reload-status-ch3" style="font-family: 'Share Tech Mono'; color: #ff2a2a; font-size: 2rem; margin: 20px 0; text-shadow: 0 0 10px #ff0000;">PRESS SPACE TO RELOAD</div>
-            <div id="reload-bar-container-ch3" style="width: 400px; height: 30px; border: 2px solid #500; background: #1a0000; position: relative;">
-                <div id="reload-sweet-spot-ch3" style="position: absolute; height: 100%; top: 0; background: rgba(255,42,42,0.5); width: 60px; left: 250px;"></div>
-                <div id="reload-slider-ch3" style="position: absolute; height: 100%; width: 10px; background: #fff; top: 0; left: 0;"></div>
-            </div>
-        </div>
-        <div class="content" id="content-ch3" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; align-items: center;">
+    <!-- SLIDE 11: CHAPTER 3 TITLE -->
+    <div class="slide" id="slide-11" style="position:relative;">
+        <div class="content" id="content-11" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; align-items: center;">
             <div class="slide-subtitle" style="font-size: 1.5rem; margin-bottom: 20px;">CHAPTER 3</div>
             <h1 class="slide-header" style="border: none; font-size: 5rem; margin-bottom: 0;">The Hammer of ScrubHub</h1>
         </div>
     </div>
 
-    <!-- SLIDE 10: THE DIGITAL OVERHAUL STRATEGY -->
-    <div class="slide" id="slide-10">
-        <div class="content" id="content-10">
+    <!-- SLIDE 12: THE DIGITAL OVERHAUL STRATEGY -->
+    <div class="slide" id="slide-12">
+        <div class="content" id="content-12">
             <div class="slide-subtitle">Chapter 3: The Hammer of ScrubHub</div>
             <h1 class="slide-header">The Digital Overhaul Strategy</h1>
             <p>Introducing the branded iOS/Android app and unified Web experience. This isn't just software; it's a conversion engine.</p>
-            
-            <h3>What's in the app foundation:</h3>
-            <table>
-                <tr>
-                    <th>The 5 Bottom Tabs</th>
-                    <th>What the Tab is Called</th>
-                    <th>What the Customer Does Here</th>
-                </tr>
-                <tr>
-                    <td><strong>Tab 1: The Dashboard</strong></td>
-                    <td class="hud-font">Home</td>
-                    <td>See how much money they've saved, view their active plan, and buy Lightning Deals.</td>
-                </tr>
-                <tr>
-                    <td><strong>Tab 2: The Physical Asset</strong></td>
-                    <td class="hud-font">My Garage</td>
-                    <td>Add or remove cars and license plates (for the tunnel cameras).</td>
-                </tr>
-                <tr>
-                    <td><strong>Tab 3: The Store</strong></td>
-                    <td class="hud-font">Wash Plans</td>
-                    <td>Buy a new membership ($25), upgrade a tier, or cancel a plan.</td>
-                </tr>
-                <tr>
-                    <td><strong>Tab 4: The Map</strong></td>
-                    <td class="hud-font">Locations</td>
-                    <td>Find the nearest wash, see if it's open, and get driving directions.</td>
-                </tr>
-                <tr>
-                    <td><strong>Tab 5: The Admin Hub</strong></td>
-                    <td class="hud-font">Account</td>
-                    <td>Update credit cards, view past receipts, and contact Help & Support.</td>
-                </tr>
-            </table>
+            <div class="hud-box" style="margin-top: 20px;">
+                <h3 class="red-text">Transforming Transactions into Relationships</h3>
+                <p>By moving the customer journey from a physical kiosk to their smartphone, we enable continuous engagement, recurring billing, and targeted incentives that drive loyalty before they even arrive at the tunnel.</p>
+            </div>
         </div>
     </div>
 
-
-    <!-- SLIDE 10B: APP FOUNDATION -->
-    <div class="slide" id="slide-10b">
-        <div class="content" id="content-10b">
+    <!-- SLIDE 13: APP FOUNDATION STRUCTURE -->
+    <div class="slide" id="slide-13">
+        <div class="content" id="content-13">
             <div class="slide-subtitle">Chapter 3: The Hammer of ScrubHub</div>
-            <h1 class="slide-header">The App Foundation</h1>
-            <p style="font-size:0.9rem; margin-bottom:10px;">A single, unified platform with 5 core tabs — everything the customer needs, nothing they don't.</p>
-            <table>
+            <h1 class="slide-header">App Foundation Structure</h1>
+            
+            <table style="margin-top: 20px;">
                 <tr>
-                    <th>The 5 Core Tabs</th>
-                    <th>Tab Name</th>
+                    <th>The 5 Bottom Tabs</th>
+                    <th>What the Tab is Called</th>
                     <th>What the Customer Does Here</th>
                 </tr>
                 <tr>
@@ -579,15 +540,15 @@
                 <tr>
                     <td><strong>Tab 5: The Admin Hub</strong></td>
                     <td class="hud-font">Account</td>
-                    <td>Update credit cards, view past receipts, and contact Help &amp; Support.</td>
+                    <td>Update credit cards, view past receipts, and contact Help & Support.</td>
                 </tr>
             </table>
         </div>
     </div>
 
-    <!-- SLIDE 11: FEATURE-TO-ROI MAPPING -->
-    <div class="slide" id="slide-11">
-        <div class="content" id="content-11" style="overflow:hidden;">
+    <!-- SLIDE 14: FEATURE-TO-ROI MAPPING -->
+    <div class="slide" id="slide-14">
+        <div class="content" id="content-14" style="overflow:hidden;">
             <div class="slide-subtitle">Chapter 3: The Hammer of ScrubHub</div>
             <h1 class="slide-header" style="margin-bottom:8px;">New Features</h1>
             
@@ -641,25 +602,17 @@
         </div>
     </div>
 
-    <!-- CHAPTER 4 TITLE: MARKETING OVERVIEW -->
-    <div class="slide" id="slide-ch4" style="position:relative;">
-        <div class="game-overlay" id="overlay-ch4">
-            <div class="instructions">[ ACTIVE RELOAD — PRESS SPACE AT THE RIGHT MOMENT ]</div>
-            <div id="reload-status-ch4" style="font-family: 'Share Tech Mono'; color: #ff2a2a; font-size: 2rem; margin: 20px 0; text-shadow: 0 0 10px #ff0000;">PRESS SPACE TO RELOAD</div>
-            <div id="reload-bar-container-ch4" style="width: 400px; height: 30px; border: 2px solid #500; background: #1a0000; position: relative;">
-                <div id="reload-sweet-spot-ch4" style="position: absolute; height: 100%; top: 0; background: rgba(255,42,42,0.5); width: 60px; left: 250px;"></div>
-                <div id="reload-slider-ch4" style="position: absolute; height: 100%; width: 10px; background: #fff; top: 0; left: 0;"></div>
-            </div>
-        </div>
-        <div class="content" id="content-ch4" style="text-align:center; display:flex; flex-direction:column; justify-content:center; height:100%; align-items:center;">
+    <!-- SLIDE 15: CHAPTER 4 TITLE -->
+    <div class="slide" id="slide-15" style="position:relative;">
+        <div class="content" id="content-15" style="text-align:center; display:flex; flex-direction:column; justify-content:center; height:100%; align-items:center;">
             <div class="slide-subtitle" style="font-size:1.5rem; margin-bottom:20px;">CHAPTER 4</div>
             <h1 class="slide-header" style="border:none; font-size:5rem; margin-bottom:0;">Marketing Overview</h1>
         </div>
     </div>
 
-    <!-- SLIDE 12: MARKETING ENGINE -->
-    <div class="slide" id="slide-12">
-        <div class="content" id="content-12">
+    <!-- SLIDE 16: MARKETING ENGINE -->
+    <div class="slide" id="slide-16">
+        <div class="content" id="content-16">
             <div class="slide-subtitle">Chapter 4: Marketing Overview</div>
             <h1 class="slide-header">Our Marketing Engine</h1>
             <p style="font-size:0.9rem; margin-bottom:10px;">A full-stack growth system that runs in the background — attracting, converting, and retaining customers automatically.</p>
@@ -683,9 +636,9 @@
             </div>
         </div>
     </div>
-    <!-- SLIDE 13: THE OPERATIONS DASHBOARD -->
-    <div class="slide" id="slide-13">
-        <div class="content" id="content-13">
+    <!-- SLIDE 17: THE OPERATIONS DASHBOARD -->
+    <div class="slide" id="slide-17">
+        <div class="content" id="content-17">
             <div class="slide-subtitle">Chapter 4: Marketing Overview</div>
             <h1 class="slide-header">The Operations Dashboard</h1>
             <p>Real-time visibility into the metrics that matter — your digital ROI, at a glance.</p>
@@ -712,28 +665,20 @@
     </div>
 
 
-    <!-- CHAPTER 5 TITLE: EXECUTION DETAILS -->
-    <div class="slide" id="slide-ch5">
-        <div class="game-overlay" id="overlay-ch5">
-            <div class="instructions">[ ACTIVE RELOAD — PRESS SPACE AT THE RIGHT MOMENT ]</div>
-            <div id="reload-status-ch5" style="font-family: 'Share Tech Mono'; color: #ff2a2a; font-size: 2rem; margin: 20px 0; text-shadow: 0 0 10px #ff0000;">PRESS SPACE TO RELOAD</div>
-            <div id="reload-bar-container-ch5" style="width: 400px; height: 30px; border: 2px solid #500; background: #1a0000; position: relative;">
-                <div id="reload-sweet-spot-ch5" style="position: absolute; height: 100%; top: 0; background: rgba(255,42,42,0.5); width: 60px; left: 250px;"></div>
-                <div id="reload-slider-ch5" style="position: absolute; height: 100%; width: 10px; background: #fff; top: 0; left: 0;"></div>
-            </div>
-        </div>
-        <div class="content" id="content-ch5" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; align-items: center;">
+    <!-- SLIDE 18: CHAPTER 5 TITLE -->
+    <div class="slide" id="slide-18">
+        <div class="content" id="content-18" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; align-items: center;">
             <div class="slide-subtitle" style="font-size: 1.5rem; margin-bottom: 20px;">CHAPTER 5</div>
             <h1 class="slide-header" style="border: none; font-size: 5rem; margin-bottom: 0;">Execution Details</h1>
         </div>
     </div>
 
-    <!-- SLIDE 14: IMPLEMENTATION TIMELINE -->
-    <div class="slide" id="slide-14">
-        <div class="content" id="content-14">
+    <!-- SLIDE 19: IMPLEMENTATION TIMELINE -->
+    <div class="slide" id="slide-19">
+        <div class="content" id="content-19">
             <div class="slide-subtitle">Chapter 5: Execution Details</div>
             <h1 class="slide-header">Execution Timeline</h1>
-            <p>A realistic, 16-week roadmap for deployment.</p>
+            <p>A 16-week roadmap for deployment.</p>
             
             <div class="hud-box" style="margin-bottom: 15px;">
                 <h3 class="hud-font">Weeks 1-3: Discovery</h3>
@@ -748,15 +693,15 @@
                 <p>Core development of the iOS App, Android App, and Website Redesign.</p>
             </div>
             <div class="hud-box">
-                <h3 class="hud-font">Weeks 11-12: Testing & Launch</h3>
+                <h3 class="hud-font">Weeks 14-16: Testing & Launch</h3>
                 <p>QA, technical testing, App Store submissions, and Go-Live.</p>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 15: WHAT I NEED FROM YOU -->
-    <div class="slide" id="slide-15">
-        <div class="content" id="content-15">
+    <!-- SLIDE 20: WHAT I NEED FROM YOU -->
+    <div class="slide" id="slide-20">
+        <div class="content" id="content-20">
             <div class="slide-subtitle">Chapter 5: Execution Details</div>
             <h1 class="slide-header">What We Need From You</h1>
             
@@ -787,19 +732,19 @@
     </div>
 
 
-    <!-- SLIDE 16: FINAL CHAPTER -->
-    <div class="slide" id="slide-16">
-        <div class="content" id="content-16" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; align-items: center; transition: opacity 0.3s; z-index: 50;">
+    <!-- SLIDE 21: FINAL CHAPTER TITLE -->
+    <div class="slide" id="slide-21">
+        <div class="content" id="content-21" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; align-items: center; transition: opacity 0.3s; z-index: 50;">
             <div class="slide-subtitle" style="font-size: 1.5rem; margin-bottom: 20px;">FINAL CHAPTER</div>
             <h1 class="slide-header" style="border: none; font-size: 5rem; margin-bottom: 0;">BOSS FIGHT</h1>
         </div>
         <div class="instructions" style="position: absolute; bottom: 80px; width: 100%; text-align: center; font-family: 'Share Tech Mono'; font-size: 1rem; color: rgba(255,42,42,0.7); pointer-events: none; z-index: 55; animation: pulse 1.5s infinite;">[ INITIATING BOSS SEQUENCE - STAND BY ]</div>
     </div>
 
-    <!-- SLIDE 17: HAMMER OF DAWN vs MISTER WASH -->
-    <div class="slide" id="slide-17">
-        <div class="game-overlay" id="overlay-17" style="background: rgba(5,0,0,0.7); backdrop-filter: none;">
-            <div class="instructions" id="hod-instructions" style="position: absolute; top: 40px; font-size: 1.5rem;">[ COMPETITOR DETECTED - CLICK TARGET TO CALL HAMMER OF DAWN ]</div>
+    <!-- SLIDE 22: HAMMER OF DAWN vs MISTER WASH -->
+    <div class="slide" id="slide-22">
+        <div class="game-overlay" id="overlay-22" style="background: rgba(5,0,0,0.7); backdrop-filter: none; cursor: crosshair;" onclick="clickAnywhere(event)">
+            <div class="instructions" id="hod-instructions" style="position: absolute; top: 40px; font-size: 1.5rem; pointer-events: none;">[ COMPETITOR DETECTED - CLICK TARGET TO CALL HAMMER OF DAWN ]</div>
             <div id="boss-arena">
                 <div class="boss-wrapper" id="boss-target">
                     <div class="boss-health-container">
@@ -814,11 +759,11 @@
         </div>
     </div>
 
-    <!-- SLIDE 18: NEXT STEPS -->
-    <div class="slide" id="slide-18">
-        <div class="content" id="content-18" style="text-align: center; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%;">
-            <h1 class="slide-header" style="border:none; font-size: 6rem; margin-bottom: 20px; color: #ff2a2a; text-shadow: 0 0 20px rgba(255,0,0,0.8);">Great job soldier.</h1>
-            <h1 class="slide-header" style="border:none; font-size: 4.5rem; margin-bottom: 50px; color: #fff;">Got any questions?</h1>
+    <!-- SLIDE 23: NEXT STEPS -->
+    <div class="slide" id="slide-23">
+        <div class="content" id="content-23" style="text-align: center; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; transition: opacity 0.3s; z-index: 50;">
+            <div class="slide-subtitle" style="font-size: 1.5rem; margin-bottom: 20px;">GREAT JOB SOLDIER.</div>
+            <h1 class="slide-header" style="border:none; font-size: 5rem; margin-bottom: 50px; color: #fff;">GOT ANY QUESTIONS?</h1>
             <button class="nav-button" style="position: relative; display: inline-block; border-color: #ff2a2a; color: #ff2a2a; font-size: 1.5rem; padding: 15px 30px;" onclick="location.reload()">Restart Mission</button>
         </div>
     </div>
@@ -830,9 +775,11 @@
         <p class="hud-font red-text" style="margin-top: 20px; font-size: 1.2rem; cursor:pointer;">[ CLICK ANYWHERE TO CLOSE ]</p>
     </div>
 
-    <!-- Chainsaw Audio -->
+    <!-- Audio Assets -->
     <audio id="chainsaw-sound" src="chainsaw.mp3" preload="auto"></audio>
     <audio id="shotgun-sound" src="shotgun_final.mp3" preload="auto"></audio>
+    <audio id="reload-sound" src="active_reload.mp3" preload="auto"></audio>
+    <audio id="hod-sound" src="hammer_of_dawn.mp3" preload="auto"></audio>
 
     <!-- Journal Modal -->
     <div id="journal-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.9); z-index: 1000; align-items:center; justify-content:center;" onclick="if(event.target.id === 'journal-modal') closeJournal()">
@@ -846,7 +793,7 @@
 
     <script>
         let currentSlideIndex = 1;
-        const totalSlides = 18;
+        const totalSlides = 23;
         let slideUnlocked = false; // Prevents nav before chainsaw
 
         function updateNav() {
@@ -892,20 +839,17 @@
             const nextSlideElement = document.getElementById('slide-' + num);
             // Shotgun slide init
             if(num === 9) { setTimeout(initShotgunSlide, 100); }
-            if(num === 16) { setTimeout(() => { nextSlide(17); }, 3000); }
-            if(num === 17) { setTimeout(startBoss, 200); }
+            if(num === 21) { setTimeout(() => { nextSlide(22); }, 3000); }
+            if(num === 22) { setTimeout(startBoss, 200); }
             
             if(num === 2) {
                 // Slide 2 is Agenda
                 revealContent(num);
-            } else if (num === 17) {
+            } else if (num === 22) {
                 // Boss fight handles its own overlay, DO NOT revealContent
-            } else if (nextSlideElement && (nextSlideElement.id === 'slide-3' || nextSlideElement.id === 'slide-ch3' || nextSlideElement.id === 'slide-ch4' || nextSlideElement.id === 'slide-ch5' || nextSlideElement.id === 'slide-ch4')) {
+            } else if (nextSlideElement && (nextSlideElement.id === 'slide-3')) {
                 let sfxMap = {
                     'slide-3':   { overlayId: 'overlay-3',    statusId: 'reload-status-3',    sweetSpotId: 'reload-sweet-spot-3',    sliderId: 'reload-slider-3',    wrapperId: 'content-3',    speed: 10 },
-                    'slide-ch3': { overlayId: 'overlay-ch3',  statusId: 'reload-status-ch3',  sweetSpotId: 'reload-sweet-spot-ch3',  sliderId: 'reload-slider-ch3',  wrapperId: 'content-ch3',  speed: 10 },
-                    'slide-ch4': { overlayId: 'overlay-ch4',  statusId: 'reload-status-ch4',  sweetSpotId: 'reload-sweet-spot-ch4',  sliderId: 'reload-slider-ch4',  wrapperId: 'content-ch4',  speed: 11 },
-                    'slide-ch5': { overlayId: 'overlay-ch5',  statusId: 'reload-status-ch5',  sweetSpotId: 'reload-sweet-spot-ch5',  sliderId: 'reload-slider-ch5',  wrapperId: 'content-ch5',  speed: 12 },
                 };
                 let cfg = sfxMap[nextSlideElement.id];
                 startActiveReload({
@@ -1111,6 +1055,8 @@
                 status.style.textShadow = "0 0 20px #fff";
                 sweetSpot.style.background = "#fff";
                 sweetSpot.style.boxShadow = "0 0 30px #fff";
+                let rsnd = document.getElementById("reload-sound");
+                if (rsnd) { rsnd.currentTime = 0; rsnd.play().catch(()=>{}); }
 
                 setTimeout(() => {
                     overlay.style.opacity = 0;
@@ -1220,6 +1166,12 @@
             shotgunChips = 100;
             shotgunDone = false;
             let title = document.getElementById('swot-target-title');
+            let subtitle = document.getElementById('swot-subtitle');
+            
+            title.innerHTML = title.innerText.split('').map(c => `<span class="shatter-letter" style="display:inline-block; transition: transform 0.4s cubic-bezier(.55,.085,.68,.53), opacity 0.4s; position:relative;">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+            if (subtitle) {
+                subtitle.innerHTML = subtitle.innerText.split('').map(c => `<span class="shatter-letter" style="display:inline-block; transition: transform 0.4s cubic-bezier(.55,.085,.68,.53), opacity 0.4s; position:relative;">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+            }
             title.style.opacity = '1';
             title.style.filter = '';
             // Add hint
@@ -1314,13 +1266,23 @@
                 setTimeout(() => chip.remove(), 1400);
             }
 
-            // Chip away at the title (each shot removes 8-15%)
-            let damage = 8 + Math.random() * 7;
+            // Chip away at the title letters directly
+            let letters = Array.from(title.querySelectorAll('.shatter-letter:not(.destroyed)'));
+            if (letters.length > 0) {
+                let toDestroy = Math.min(letters.length, Math.floor(2 + Math.random()*2));
+                for(let i=0; i<toDestroy; i++) {
+                    let idx = Math.floor(Math.random() * letters.length);
+                    let l = letters.splice(idx, 1)[0];
+                    if(l) {
+                        l.classList.add('destroyed');
+                        l.style.transform = `translate(${Math.random()*150 - 75}px, ${Math.random()*200 + 100}px) rotate(${Math.random()*180 - 90}deg)`;
+                        l.style.opacity = '0';
+                    }
+                }
+            }
+            
+            let damage = 12 + Math.random() * 5;
             shotgunChips = Math.max(0, shotgunChips - damage);
-            title.style.opacity = (shotgunChips / 100).toFixed(2);
-            title.style.filter = shotgunChips < 40 ? `blur(${(40-shotgunChips)/15}px)` : '';
-
-            // Red tint overlay grows
             let frac = (100 - shotgunChips) / 100;
             slide.style.background = `rgba(${Math.floor(frac*60)},0,0,1)`;
 
@@ -1391,7 +1353,59 @@
             }
         }
 
+        function clickAnywhere(event) {
+            if (!hodActive) return;
+            const x = event.clientX;
+            const y = event.clientY;
+            triggerHammerStrike(x, y);
+
+            // Check if within bounds of boss
+            let rect = bossWrapper.getBoundingClientRect();
+            if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+                if(isBossAlive) {
+                    bossHealth = Math.max(0, bossHealth - 15);
+                    const healthPct = (bossHealth / 100) * 100;
+                    healthBar.style.width = healthPct + '%';
+                    
+                    document.body.classList.remove('shake-boss-hit');
+                    void document.body.offsetWidth;
+                    document.body.classList.add('shake-boss-hit');
+
+                    let flash = document.createElement('div');
+                    flash.style.position = 'absolute';
+                    flash.style.top = '0'; flash.style.left = '0';
+                    flash.style.width = '100%'; flash.style.height = '100%';
+                    flash.style.background = 'white';
+                    flash.style.zIndex = '50';
+                    flash.style.opacity = '0.5';
+                    flash.style.transition = 'opacity 0.2s';
+                    bossWrapper.appendChild(flash);
+                    setTimeout(() => { flash.style.opacity = '0'; setTimeout(()=>flash.remove(), 200); }, 50);
+
+                    updateDifficulty();
+
+                    if(bossHealth <= 0) {
+                        isBossAlive = false;
+                        hodActive = false;
+                        clearTimeout(bossMovementTimeout);
+                        
+                        logoBody.style.background = '#1a0000';
+                        logoBody.style.borderColor = '#ff0000';
+                        logoBody.style.boxShadow = 'none';
+                        logoBody.innerHTML = '<span style="color:#ff0000;">VAPORIZED</span>';
+                        
+                        setTimeout(() => {
+                            bossWrapper.style.opacity = '0';
+                            setTimeout(() => nextSlide(23), 1000);
+                        }, 1200);
+                    }
+                }
+            }
+        }
+
         function triggerHammerStrike(x, y) {
+            let hsnd = document.getElementById("hod-sound");
+            if (hsnd) { hsnd.currentTime = 0; hsnd.play().catch(()=>{}); }
             const beam = document.createElement('div');
             beam.className = 'hammer-beam-core';
             beam.style.left = `${x}px`;
@@ -1447,54 +1461,6 @@
             currentIntervalTimer = 1500;
             
             bossMovementTimeout = setTimeout(moveBoss, 700); 
-
-            bossWrapper.onmousedown = (e) => {
-                if(!isBossAlive || !hodActive) return;
-                
-                triggerHammerStrike(e.clientX, e.clientY);
-
-                bossHealth -= 34;
-                if(bossHealth < 0) bossHealth = 0;
-                healthBar.style.width = `${bossHealth}%`;
-                
-                updateDifficulty();
-                clearTimeout(bossMovementTimeout);
-                moveBoss();
-
-                logoBody.style.background = '#ff0000'; 
-                logoBody.style.color = '#fff';
-                logoBody.style.borderColor = '#ff0000';
-                setTimeout(() => {
-                    if(isBossAlive) {
-                        logoBody.style.background = '#fff';
-                        logoBody.style.color = '#0056b3';
-                        logoBody.style.borderColor = '#0056b3';
-                    }
-                }, 150);
-
-                if (bossHealth <= 0) {
-                    isBossAlive = false;
-                    hodActive = false;
-                    clearTimeout(bossMovementTimeout);
-                    
-                    logoBody.style.background = '#1a0000';
-                    logoBody.style.borderColor = '#ff0000';
-                    logoBody.style.boxShadow = 'none';
-                    logoBody.innerHTML = '<span style="color:#ff0000;">VAPORIZED</span>';
-                    
-                    setTimeout(() => {
-                        bossWrapper.style.opacity = '0';
-                        setTimeout(() => nextSlide(18), 1000);
-                    }, 1200);
-                }
-            };
-            
-            document.getElementById('slide-17').onmousedown = (e) => {
-                if(!isBossAlive || !hodActive) return;
-                if (e.target.id === 'slide-17' || e.target.id === 'overlay-17' || e.target.id === 'boss-arena') {
-                    triggerHammerStrike(e.clientX, e.clientY);
-                }
-            };
         }
     </script>
 </body>
