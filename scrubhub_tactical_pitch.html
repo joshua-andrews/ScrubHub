@@ -496,7 +496,7 @@
     <div class="slide" id="slide-12">
         <div class="content" id="content-12">
             <div class="slide-subtitle">Chapter 3: The Hammer of ScrubHub</div>
-            <h1 class="slide-header">The Digital Overhaul Strategy</h1>
+            <h1 class="slide-header">Mobile App Strategy</h1>
             <p>Introducing the branded iOS/Android app and unified Web experience. This isn't just software; it's a conversion engine.</p>
             <div class="hud-box" style="margin-top: 20px;">
                 <h3 class="red-text">Transforming Transactions into Relationships</h3>
@@ -780,6 +780,11 @@
     <audio id="shotgun-sound" src="shotgun_final.mp3" preload="auto"></audio>
     <audio id="reload-sound" src="active_reload.mp3" preload="auto"></audio>
     <audio id="hod-sound" src="hammer_of_dawn.mp3" preload="auto"></audio>
+    <audio id="main-theme" src="main_theme.mp3" preload="auto"></audio>
+    <audio id="victory-theme" src="victory_theme.mp3" preload="auto"></audio>
+
+    <!-- Global Logo -->
+    <img src="white t logo.png" style="position: fixed; bottom: 30px; right: 40px; width: 60px; height: auto; z-index: 1000; opacity: 0.5; pointer-events: none;">
 
     <!-- Journal Modal -->
     <div id="journal-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.9); z-index: 1000; align-items:center; justify-content:center;" onclick="if(event.target.id === 'journal-modal') closeJournal()">
@@ -795,6 +800,15 @@
         let currentSlideIndex = 1;
         const totalSlides = 23;
         let slideUnlocked = false; // Prevents nav before chainsaw
+
+        let musicStarted = false;
+        document.addEventListener('click', () => {
+            if (!musicStarted && currentSlideIndex === 1) {
+                let mt = document.getElementById('main-theme');
+                if(mt) { mt.volume = 0.4; mt.play().catch(()=>{}); }
+                musicStarted = true;
+            }
+        });
 
         function updateNav() {
             const btnPrev = document.getElementById('btn-prev');
@@ -836,6 +850,15 @@
             currentSlideIndex = num;
             updateNav();
             
+            if (num !== 1) {
+                let mt = document.getElementById('main-theme');
+                if (mt) { mt.pause(); }
+            }
+            if (num === 23) {
+                let vt = document.getElementById('victory-theme');
+                if (vt) { vt.volume = 0.5; vt.currentTime = 0; vt.play().catch(()=>{}); }
+            }
+
             const nextSlideElement = document.getElementById('slide-' + num);
             // Shotgun slide init
             if(num === 9) { setTimeout(initShotgunSlide, 100); }
